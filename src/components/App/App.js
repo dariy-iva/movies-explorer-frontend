@@ -1,4 +1,6 @@
-
+import React from 'react';
+import './App.css';
+import Footer from '../Footer/Footer'
 
 function App() {
   return (
@@ -6,6 +8,7 @@ function App() {
       <header className="App-header">
 
       </header>
+      <Footer />
     </div>
   );
 }
