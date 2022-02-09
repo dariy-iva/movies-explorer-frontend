@@ -4,38 +4,41 @@ import "./Navigation.css";
 
 function Navigation({ isOpenMenu, onMenuClose }) {
   const location = useLocation();
+  const path = location.pathname;
+
+  const linksForSignConfig = [
+    { path: "/signup", text: "Регистрация" },
+    { path: "/signin", text: "Войти" },
+  ];
+  const linksLoggedUserConfig = [
+    { path: "/", text: "Главная" },
+    { path: "/movies", text: "Фильмы" },
+    { path: "/saved-movies", text: "Сохранённые фильмы" },
+    { path: "/profile", text: "Аккаунт" },
+  ];
 
   return (
     <>
-      {location.pathname === "/" ? (
+      {path === "/" && (
         <nav className="menu">
-          <Link
-            to="/signup"
-            className="menu__link menu__link_page_main"
-          >
-            Регистрация
-          </Link>
-          <Link
-            to="/signin"
-            className="menu__link menu__link_page_main"
-          >
-            Войти
-          </Link>
+          {linksForSignConfig.map((link) => (
+            <Link to={link.path} className="menu__link menu__link_page_main" key={linksForSignConfig.indexOf(link)}>
+              {link.text}
+            </Link>
+          ))}
         </nav>
-      ) : (
-        <nav className={`menu ${isOpenMenu ? "menu_sidebar_open" : "menu_sidebar_close"}`}>
-          {isOpenMenu && (
+      )}
+      {(path === "/movies" ||
+        path === "/saved-movies" ||
+        path === "/profile") && (
+        <nav
+          className={`menu ${
+            isOpenMenu ? "menu_sidebar_open" : "menu_sidebar_close"
+          }`}
+        >
+          {linksLoggedUserConfig.map((link) => (
             <NavLink
-            to="/"
-            className="menu__link menu__link_page_movies"
-            end
-            onClick={onMenuClose}
-          >
-            Главная
-          </NavLink>
-          )}
-          <NavLink
-            to="/movies"
+            to={link.path}
             className={(props) =>
               props.isActive
                 ? "menu__link menu__link_page_movies menu__link_page_movies_active"
@@ -43,33 +46,11 @@ function Navigation({ isOpenMenu, onMenuClose }) {
             }
             end
             onClick={onMenuClose}
+            key={linksLoggedUserConfig.indexOf(link)}
           >
-            Фильмы
+            {link.text}
           </NavLink>
-          <NavLink
-            to="/saved-movies"
-            className={(props) =>
-              props.isActive
-                ? "menu__link menu__link_page_movies menu__link_page_movies_active"
-                : "menu__link menu__link_page_movies"
-            }
-            end
-            onClick={onMenuClose}
-          >
-            Сохранённые фильмы
-          </NavLink>
-          <NavLink
-            to="/profile"
-            className={(props) =>
-              props.isActive
-                ? "menu__link menu__link_page_movies menu__link_page_movies_active"
-                : "menu__link menu__link_page_movies"
-            }
-            end
-            onClick={onMenuClose}
-          >
-            Аккаунт
-          </NavLink>
+          ))}
         </nav>
       )}
     </>
