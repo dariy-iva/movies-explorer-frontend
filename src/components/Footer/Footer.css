@@ -2,6 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 79px 70px 20px;
+  box-sizing: border-box;
 }
 .footer__text {
   font-weight: normal;
@@ -22,12 +23,11 @@
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  color: #000000;
-  ;
 }
 
 .footer__copyright {
   margin: 0;
+  color: #000000;
 }
 
 .footer__links {
@@ -42,6 +42,7 @@
 .footer__link {
   text-decoration: none;
   transition: opacity .3s;
+  color: #000000;
 }
 
 .footer__link:hover {
