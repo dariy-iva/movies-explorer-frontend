@@ -7,6 +7,11 @@
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  line-height: 0;
+}
+
+.header_color {
+  background-color: #F3C1F8;
 }
 
 .header__overlay {

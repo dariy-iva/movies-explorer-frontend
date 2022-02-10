@@ -20,7 +20,7 @@ function Header() {
   }
 
   return (
-    <header className="header">
+    <header className={`header ${path === "/" && "header_color"}`}>
       <Link to="/">
         <img src={logo} alt="логотип" className="header__logo" />
       </Link>
