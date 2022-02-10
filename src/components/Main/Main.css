@@ -1,13 +1,8 @@
 .main {
+  --main-padding-wrap: 70px;
 }
 
-.main__section {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.main__section-title {
-  max-width: 1140px;
+.main__title {
   font-size: 22px;
   line-height: 1.22;
   font-weight: normal;
@@ -18,43 +13,46 @@
   border-bottom: 1px solid #000;
 }
 
-.main__section-text {
+.main__text {
   font-size: 14px;
   line-height: 1.5;
   font-weight: normal;
   margin: 0;
 }
 
-.main__section-text_color_black {
+.main__text_color_black {
   color: #000;
 }
 
-.main__section-text_color_white {
-  color: #FFFFFF;
+.main__text_color_white {
+  color: #FFF;
   ;
 }
 
-.main__section-text_color_grey {
+.main__text_color_grey {
   color: #a0a0a0;
 }
 
 
 @media (max-width: 1023px) {
-  .main__section-text {
+  .main {
+    --main-padding-wrap: 30px;
+  }
+  .main__text {
     font-size: 12px;
-    line-height: 1.5;
-    font-weight: normal;
-    margin: 0;
   }
 }
 
 @media (max-width: 767px) {
-  .main__section-title {
+  .main {
+    --main-padding-wrap: 14px;
+  }
+  .main__title {
     font-size: 18px;
     padding-bottom: 22px;
 
   }
-  .main__section-text {
+  .main__text {
     font-size: 11px;
   }
 }

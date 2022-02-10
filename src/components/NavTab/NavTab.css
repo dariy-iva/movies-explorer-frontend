@@ -1,6 +1,6 @@
 .nav-tab {
-  padding: 25px 0;
-  background: #000000;
+  padding: 25px var(--main-padding-wrap);
+  background: #000;
 }
 
 .nav-tab__links {

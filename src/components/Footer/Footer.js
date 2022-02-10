@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { myContacts } from "../../utils/constants/myContactsAndLinks";
 
 function Footer() {
   return (
@@ -19,24 +20,17 @@ function Footer() {
               Яндекс.Практикум
             </a>
           </li>
-          <li>
+          {myContacts.map(contact => (
+            <li key={myContacts.indexOf(contact)}>
             <a
-              href="https://github.com/dariy-iva"
+              href={contact.link}
               target="blank"
               className="footer__link footer__text"
             >
-              Github
+              {contact.name}
             </a>
           </li>
-          <li>
-            <a
-              href="https://t.me/DariyIva"
-              target="blank"
-              className="footer__link footer__text"
-            >
-              Telegram
-            </a>
-          </li>
+          ))}
         </ul>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 .promo {
-  padding: 202px 0 224px;
+  padding: 202px var(--main-padding-wrap) 224px;
   background: #F3C1F8 url(../../images/main__banner.svg) no-repeat center 100px;
 }
 
@@ -15,14 +15,14 @@
 
 @media (max-width: 1023px) {
   .promo {
-    padding: 344px 0 342px;
+    padding: 344px var(--main-padding-wrap) 342px;
     background-position: center;
   }
 }
 
 @media (max-width: 767px) {
   .promo {
-    padding: 225px 0 246px;
+    padding: 225px var(--main-padding-wrap) 246px;
     background-position: center 160px;
     background-size: 248px 248px;
   }

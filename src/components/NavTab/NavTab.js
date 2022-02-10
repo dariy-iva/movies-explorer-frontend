@@ -2,24 +2,30 @@ import React from "react";
 import "./NavTab.css";
 
 function NavTab() {
+  const navLinks = [
+    {
+      text: "О проекте",
+      link: "#about-project"
+    },
+    {
+      text: "Технологии",
+      link: "#techs"
+    },
+    {
+      text: "Студент",
+      link: "#"
+    }
+  ]
   return (
     <section className="nav-tab">
       <ul className="nav-tab__links">
-        <li>
-          <a href="#about-project" className="nav-tab__link">
-            О проекте
+        {navLinks.map(item => (
+          <li key={navLinks.indexOf(item)}>
+          <a href={item.link} className="nav-tab__link">
+            {item.text}
           </a>
         </li>
-        <li>
-          <a href="" className="nav-tab__link">
-            Технологии
-          </a>
-        </li>
-        <li>
-          <a href="" className="nav-tab__link">
-            Студент
-          </a>
-        </li>
+        ))}
       </ul>
     </section>
   );
