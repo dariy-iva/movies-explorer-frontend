@@ -13,7 +13,7 @@ function NavTab() {
     },
     {
       text: "Студент",
-      link: "#"
+      link: "#about-me"
     }
   ]
   return (
