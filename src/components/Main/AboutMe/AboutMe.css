@@ -15,7 +15,7 @@
 
 .about-me__column_content_photo {
   flex-grow: 1;
-  background-image: url(../../images/main__photo.webp);
+  background-image: url(../../../images/main__photo.webp);
   background-repeat: no-repeat;
   background-position: right top;
   background-size: contain;

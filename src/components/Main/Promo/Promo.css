@@ -1,6 +1,6 @@
 .promo {
   padding: 202px var(--main-padding-wrap) 224px;
-  background: var(--color-bcg-pink) url(../../images/main__banner.svg) no-repeat center 100px;
+  background: var(--color-bcg-pink) url(../../../images/main__banner.svg) no-repeat center 100px;
 }
 
 .promo__title {

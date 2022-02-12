@@ -1,6 +1,6 @@
 import React from "react";
 import "./Portfolio.css";
-import { myProjects } from "../../utils/constants/myContactsAndLinks";
+import { myProjects } from "../../../utils/constants/myContactsAndLinks";
 
 function Portfolio() {
   return (

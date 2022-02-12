@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
-import { myContacts } from "../../utils/constants/myContactsAndLinks";
+import { myContacts } from "../../../utils/constants/myContactsAndLinks";
 
 function AboutMe() {
   return (
