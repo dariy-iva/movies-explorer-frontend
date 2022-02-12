@@ -20,6 +20,8 @@
   font-weight: 500;
   color: var(--white);
   transition: opacity .3s;
+  text-decoration: none;
+  border-bottom: 1px solid var(--white);
 }
 
 .nav-tab__link:hover {
