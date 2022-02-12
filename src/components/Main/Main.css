@@ -7,10 +7,10 @@
   line-height: 1.22;
   font-weight: normal;
   letter-spacing: -0.04em;
-  color: #000;
+  color: var(--black);
   margin: 0 auto;
   padding-bottom: 23px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--black);
 }
 
 .main__text {
@@ -21,16 +21,16 @@
 }
 
 .main__text_color_black {
-  color: #000;
+  color: var(--black);
 }
 
 .main__text_color_white {
-  color: #FFF;
+  color: var(--white);
   ;
 }
 
 .main__text_color_grey {
-  color: #a0a0a0;
+  color: var(--color-text-gray);
 }
 
 

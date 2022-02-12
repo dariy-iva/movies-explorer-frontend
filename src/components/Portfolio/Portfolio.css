@@ -7,7 +7,7 @@
   font-size: 18px;
   line-height: 1.11;
   font-weight: normal;
-  color: #a0a0a0;
+  color: var(--color-text-gray);
 }
 
 .portfolio__list {
@@ -21,7 +21,7 @@
 
 .portfolio__item:not(:last-child) {
   padding-bottom: 20px;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid var(--color-bcg-dark-gray);
 }
 
 .portfolio__link {
@@ -29,7 +29,7 @@
   line-height: 1.66;
   font-weight: normal;
   letter-spacing: -0.04em;
-  color: #000;
+  color: var(--black);
   text-decoration: none;
   transition: opacity .3s;
   display: flex;

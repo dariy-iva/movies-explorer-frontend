@@ -21,7 +21,7 @@ function Techs() {
       </p>
       <ul className="techs__list">
         {techsList.map((tech) => (
-          <li className="techs__item main__text" key={techsList.indexOf(tech)}>
+          <li className="techs__item main__text main__text_color_black" key={techsList.indexOf(tech)}>
             {tech}
           </li>
         ))}

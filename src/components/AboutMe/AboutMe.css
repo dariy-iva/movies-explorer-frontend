@@ -27,7 +27,7 @@
   line-height: 1.16;
   font-weight: normal;
   letter-spacing: -0.04em;
-  color: #000;
+  color: var(--black);
   margin: 0;
 }
 
@@ -35,7 +35,7 @@
   font-size: 18px;
   line-height: 1.11;
   font-weight: 500;
-  color: #000;
+  color: var(--black);
   margin: 18px 0 0;
 }
 
@@ -58,7 +58,7 @@
   font-size: 14px;
   line-height: 1.21;
   font-weight: 500;
-  color: #000;
+  color: var(--black);
   text-decoration: none;
   transition: opacity 0.3s;
 }

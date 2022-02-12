@@ -1,6 +1,6 @@
 .nav-tab {
   padding: 25px var(--main-padding-wrap);
-  background: #000;
+  background: var(--black);
 }
 
 .nav-tab__links {
@@ -18,7 +18,7 @@
   font-size: 13px;
   line-height: 1.23;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--white);
   transition: opacity .3s;
 }
 

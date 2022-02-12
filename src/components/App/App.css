@@ -12,4 +12,12 @@ body {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
+  --black: #000;
+  --white: #FFF;
+  --color-bcg-pink: #F3C1F8;
+  --color-bcg-light-gray: #F2F2F2;
+  --color-bcg-gray: #F5F5F5;
+  --color-bcg-dark-gray: #E8E8E8;
+  --color-text-gray: #A0A0A0;
+  background-color: var(--white);
 }

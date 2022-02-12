@@ -24,11 +24,11 @@
 }
 
 .table__cell_color_black {
-  background: #000;
+  background: var(--black);
 }
 
 .table__cell_color_grey {
-  background: #F2F2F2;
+  background: var(--color-bcg-light-gray);
 }
 
 .table__title {
@@ -36,7 +36,7 @@
   line-height: 1.2;
   font-weight: normal;
   letter-spacing: -0.04em;
-  color: #000;
+  color: var(--black);
   margin: 0 0 26px;
 }
 

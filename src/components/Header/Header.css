@@ -10,7 +10,7 @@
 }
 
 .header_color {
-  background-color: #f3c1f8;
+  background-color: var(--color-bcg-pink);
 }
 
 .header__overlay {

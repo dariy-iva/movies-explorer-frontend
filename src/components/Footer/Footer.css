@@ -10,8 +10,8 @@
 .footer__title {
   margin: 0;
   padding-bottom: 20px;
-  border-bottom: 1px solid #E8E8E8;
-  color: #A0A0A0;
+  border-bottom: 1px solid var(--color-bcg-dark-gray);
+  color: var(--color-text-gray);
   text-align: center;
 }
 
@@ -23,7 +23,7 @@
 
 .footer__copyright {
   margin: 0;
-  color: #000;
+  color: var(--black);
 }
 
 .footer__links {
@@ -39,7 +39,7 @@
 .footer__link {
   text-decoration: none;
   transition: opacity .3s;
-  color: #000;
+  color: var(--black);
 }
 
 .footer__link:hover {

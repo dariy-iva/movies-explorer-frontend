@@ -1,6 +1,6 @@
 .techs {
   padding: 100px var(--main-padding-wrap);
-  background-color: #F5F5F5;
+  background-color: var(--color-bcg-gray);
 }
 
 .techs__title {
@@ -10,6 +10,7 @@
   font-weight: normal;
   letter-spacing: -0.04em;
   text-align: center;
+  color: var(--black);
 }
 
 .techs__text {
@@ -17,7 +18,7 @@
   letter-spacing: -0.04em;
   text-align: center;
   margin: 26px auto 0;
-  color: #000;
+  color: var(--black);
 }
 
 .techs__list {
@@ -34,7 +35,7 @@
   display: block;
   padding: 21px 0 22px;
   text-align: center;
-  background: #E8E8E8;
+  background: var(--color-bcg-dark-gray);
   border-radius: 10px;
   letter-spacing: -0.04em;
 }
