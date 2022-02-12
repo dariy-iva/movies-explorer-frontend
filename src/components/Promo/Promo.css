@@ -23,13 +23,13 @@
 
 @media (max-width: 767px) {
   .promo {
-    padding: 225px var(--main-padding-wrap) 246px;
+    padding: 225px var(--main-padding-wrap) 248px;
     background-position: center 160px;
     background-size: 248px 248px;
   }
   .promo__title {
     max-width: 300px;
-    font-size: 31px;
+    font-size: 30.5px;
     line-height: 1.25;
   }
 }

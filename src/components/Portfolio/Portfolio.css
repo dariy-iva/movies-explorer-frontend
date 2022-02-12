@@ -31,17 +31,22 @@
   letter-spacing: -0.04em;
   color: var(--black);
   text-decoration: none;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   display: flex;
   justify-content: space-between;
 }
 
 .portfolio__link::after {
-  content: url(../../images/icon__portfolio.svg);
+  content: "";
+  background-image: url(../../images/icon__portfolio.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 21px;
 }
 
 .portfolio__link:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 @media (max-width: 1023px) {
@@ -50,6 +55,9 @@
   }
   .portfolio__link {
     font-size: 28px;
+  }
+  .portfolio__item:not(:last-child) {
+    padding-bottom: 23px;
   }
 }
 
@@ -67,5 +75,11 @@
   .portfolio__link {
     font-size: 18px;
     line-height: 1.56;
+  }
+  .portfolio__link::after {
+    width: 11px;
+  }
+  .portfolio__item:not(:last-child) {
+    padding-bottom: 20px;
   }
 }

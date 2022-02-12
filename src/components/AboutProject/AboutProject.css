@@ -20,7 +20,7 @@
 }
 
 .table__cell {
-  padding: 9px 0;
+  padding: 9px 0 8px;
 }
 
 .table__cell_color_black {
@@ -52,6 +52,9 @@
   .table_content_time-project {
     margin-top: 93px;
   }
+  .table__cell {
+    padding-bottom: 10px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -61,7 +64,7 @@
   .table_content_about-project {
     margin-top: 60px;
     grid-template-columns: 1fr;
-    grid-gap: 56px;
+    grid-gap: 60px;
   }
   .table_content_time-project {
     grid-template-columns: 1fr 2fr;

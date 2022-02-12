@@ -42,6 +42,7 @@
 .about-me__caption {
   margin-top: 26px;
   flex-grow: 1;
+  line-height: 1.6;
 }
 
 .about-me__contacts {
@@ -69,7 +70,7 @@
 
 @media (max-width: 1023px) {
   .about-me {
-    padding: 90px var(--main-padding-wrap);
+    padding: 92px var(--main-padding-wrap);
   }
   .about-me__column_content_info {
     max-width: 364px;
@@ -88,6 +89,7 @@
   }
   .about-me__caption {
     margin-top: 20px;
+    line-height: 1.5;
   }
 }
 
@@ -108,7 +110,7 @@
     text-align: center;
   }
   .about-me__column_content_photo {
-    min-height: 292px;
+    min-height: 352px;
     background-position: center top;
   }
   .about-me__name {

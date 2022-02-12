@@ -1,5 +1,5 @@
 .techs {
-  padding: 100px var(--main-padding-wrap);
+  padding: 97px var(--main-padding-wrap) 82px;
   background-color: var(--color-bcg-gray);
 }
 
@@ -42,7 +42,7 @@
 
 @media (max-width: 1023px) {
   .techs {
-    padding: 90px var(--main-padding-wrap);
+    padding: 92px var(--main-padding-wrap) 72px;
   }
   .techs__title {
     margin-top: 80px;
@@ -58,7 +58,7 @@
 
 @media (max-width: 767px) {
   .techs {
-    padding: 70px var(--main-padding-wrap);
+    padding: 67px var(--main-padding-wrap) 52px;
     background: none;
   }
   .techs__title {
@@ -69,6 +69,10 @@
     margin-top: 24px;
   }
   .techs__list {
-    margin-top: 50px;
+    margin-top: 53px;
+    grid-template-columns: repeat(2, 84px);
+  }
+  .techs__item {
+    padding-bottom: 21px;
   }
 }
