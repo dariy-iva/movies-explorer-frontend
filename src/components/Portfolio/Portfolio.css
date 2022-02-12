@@ -43,6 +43,7 @@
   background-size: contain;
   background-position: center;
   width: 21px;
+  margin: 5px 5px 0 0;
 }
 
 .portfolio__link:hover {
@@ -55,6 +56,9 @@
   }
   .portfolio__link {
     font-size: 28px;
+  }
+  .portfolio__link::after {
+    width: 18px;
   }
   .portfolio__item:not(:last-child) {
     padding-bottom: 23px;
@@ -78,6 +82,7 @@
   }
   .portfolio__link::after {
     width: 11px;
+    margin: 0 4px 0 0;
   }
   .portfolio__item:not(:last-child) {
     padding-bottom: 20px;
