@@ -33,7 +33,6 @@
   color: var(--color-text-gray);
 }
 
-
 @media (max-width: 1023px) {
   .main {
     --main-padding-wrap: 50px;
