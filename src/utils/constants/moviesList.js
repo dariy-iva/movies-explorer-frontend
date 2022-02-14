@@ -57,7 +57,7 @@ export const moviesList = [
     name: "Соберись перед прыжком",
     image: "обложка фильма",
     duration: "1ч 10м",
-    owner: true,
+    owner: false,
   },
   {
     name: "Пи Джей Харви: A dog called money",
@@ -75,7 +75,7 @@ export const moviesList = [
     name: "33 слова о дизайне",
     image: "обложка фильма",
     duration: "1ч 47м",
-    owner: true,
+    owner: false,
   },
   {
     name: "Киноальманах «100 лет дизайна»",
@@ -105,7 +105,7 @@ export const moviesList = [
     name: "Книготорговцы",
     image: "обложка фильма",
     duration: "1ч 37м",
-    owner: true,
+    owner: false,
   },
   {
     name: "Когда я думаю о Германии ночью",
@@ -123,13 +123,13 @@ export const moviesList = [
     name: "Дженис: Маленькая девочка грустит",
     image: "обложка фильма",
     duration: "1ч 42м",
-    owner: true,
+    owner: false,
   },
   {
     name: "Соберись перед прыжком",
     image: "обложка фильма",
     duration: "1ч 10м",
-    owner: true,
+    owner: false,
   },
   {
     name: "Пи Джей Харви: A dog called money",

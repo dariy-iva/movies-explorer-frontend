@@ -8,6 +8,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
+import { moviesList } from "../../utils/constants/moviesList";
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(true);
@@ -17,8 +18,8 @@ function App() {
       <div className="page">
         <Routes>
           <Route exact path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/saved-movies" element={<SavedMovies />} />
+          <Route path="/movies" element={<Movies movies={moviesList} />} />
+          <Route path="/saved-movies" element={<SavedMovies movies={moviesList} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />

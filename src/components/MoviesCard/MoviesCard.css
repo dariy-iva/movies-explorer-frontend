@@ -5,6 +5,7 @@
 	background-color: var(--white);
 	box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
 	overflow: hidden;
+	cursor: pointer;
 	transition: transform .3s;
 }
 
