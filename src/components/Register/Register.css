@@ -1,0 +1,15 @@
+.register {
+
+  max-width: 396px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+
+}
+
+@media (max-width: 767px) {
+  .register {
+    max-width: 260px;
+  }
+}

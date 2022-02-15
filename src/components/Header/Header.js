@@ -18,6 +18,7 @@ function Header() {
   function handleMenuClose() {
     setIsOpenMenu(false);
   }
+  
 
   return (
     <header className={`header ${path === "/" && "header_color"}`}>

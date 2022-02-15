@@ -1,0 +1,51 @@
+.formSign__form {
+  height: 380px;
+}
+
+.formSign__title {
+  font-size: 24px;
+  line-height: 1.16;
+  font-weight: 500;
+  color: var(--black);
+  padding: 40px 0;
+  margin: 0;
+}
+
+.formSign__submit-button {
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 500;
+  color: var(--white);
+  border: none;
+  padding: 14px 0;
+  background-color: var(--black);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.formSign__submit-button:hover {
+  opacity: .6;
+}
+
+.formSign__text {
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: normal;
+  color: var(--color-text-gray);
+  margin: 0;
+  padding-top: 16px;
+  text-align: center;
+}
+
+.formSign__link {
+  text-decoration: none;
+  color: var(--black);
+  margin-left: 6px;
+  transition: opacity .3s;
+}
+
+.formSign__link:hover {
+  opacity: .6;
+}
