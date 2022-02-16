@@ -19,6 +19,7 @@
 .search__text-input {
   grid-area: search;
   border: none;
+  outline: none;
   border-radius: 4px;
   background-color: var(--color-bcg-gray);
   padding: 15px 22px;
@@ -26,6 +27,7 @@
   line-height: 1.29;
   font-weight: normal;
   color: var(--black);
+  margin: 0;
 }
 
 .search__text-input::placeholder {

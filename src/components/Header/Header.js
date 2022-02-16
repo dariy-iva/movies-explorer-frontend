@@ -1,15 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-import logo from "../../images/logo.svg";
+import Logo from "../Logo/Logo"
 import Navigation from "../Navigation/Navigation";
-
 
 function Header() {
   const location = useLocation();
   const path = location.pathname;
   const [isOpenMenu, setIsOpenMenu] = React.useState(false);
-  
 
   function handleMenuOpen() {
     setIsOpenMenu(true);
@@ -18,13 +16,12 @@ function Header() {
   function handleMenuClose() {
     setIsOpenMenu(false);
   }
-  
 
   return (
-    <header className={`header ${path === "/" && "header_color"}`}>
-      <Link to="/">
-        <img src={logo} alt="логотип" className="header__logo" />
-      </Link>
+    <header
+      className={`header ${path === "/" && "header_color"}`}
+    >
+      <Logo />
       <div
         className={`header__overlay ${isOpenMenu && "header__overlay_visible"}`}
       />
@@ -35,13 +32,15 @@ function Header() {
           type="button"
           onClick={handleMenuClose}
         />
-      ) : (path !== "/" && (
-        <button
-          className="header__button header__button_menu_open"
-          type="button"
-          onClick={handleMenuOpen}
-        />
-      ))}
+      ) : (
+        path !== "/" && (
+          <button
+            className="header__button header__button_menu_open"
+            type="button"
+            onClick={handleMenuOpen}
+          />
+        )
+      )}
     </header>
   );
 }

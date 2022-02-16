@@ -1,5 +1,8 @@
 .formSign__form {
-  height: 380px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .formSign__title {
@@ -9,6 +12,15 @@
   color: var(--black);
   padding: 40px 0;
   margin: 0;
+}
+
+.formSign__fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 6px;
 }
 
 .formSign__submit-button {
@@ -22,11 +34,11 @@
   background-color: var(--black);
   border-radius: 3px;
   cursor: pointer;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
 .formSign__submit-button:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .formSign__text {
@@ -43,9 +55,35 @@
   text-decoration: none;
   color: var(--black);
   margin-left: 6px;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
 .formSign__link:hover {
-  opacity: .6;
+  opacity: 0.6;
+}
+
+@media (max-width: 1023px) {
+
+}
+
+@media (max-width: 767px) {
+  .formSign__form {
+    min-height: 503px;
+  }
+  .formSign__title {
+    padding: 50px 0 80px;
+  }
+  .formSign__submit-button {
+    font-size: 12px;
+    line-height: 1.25;
+    padding: 15px 0;
+  }
+  .formSign__text {
+    font-size: 12px;
+    line-height: 1.25;
+    padding-top: 14px;
+  }
+  .formSign__link {
+    margin-left: 7px;
+  }
 }

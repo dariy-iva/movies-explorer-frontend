@@ -12,6 +12,7 @@ body {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
+  box-sizing: border-box;
   --black: #000;
   --white: #FFF;
   --color-bcg-pink: #F3C1F8;
@@ -19,5 +20,6 @@ body {
   --color-bcg-gray: #F5F5F5;
   --color-bcg-dark-gray: #E8E8E8;
   --color-text-gray: #A0A0A0;
+  --color-invalid-input-red: #FF4062;
   background-color: var(--white);
 }

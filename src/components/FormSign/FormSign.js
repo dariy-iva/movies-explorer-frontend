@@ -14,7 +14,7 @@ function FormSign({ name, title, buttonSubmit, children, onSubmit }) {
     <>
       <h2 className="formSign__title">{title}</h2>
       <form name={name} className="formSign__form" onSubmit={onSubmit}>
-        {children}
+        <fieldset className="formSign__fieldset">{children}</fieldset>
         <button type="submit" className="formSign__submit-button">
           {buttonSubmit}
         </button>

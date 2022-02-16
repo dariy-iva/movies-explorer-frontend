@@ -1,15 +1,19 @@
 .register {
-
   max-width: 396px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 @media (max-width: 1023px) {
-
 }
 
 @media (max-width: 767px) {
   .register {
     max-width: 260px;
+    justify-content: start;
+    padding-top: 56px;
   }
 }
