@@ -14,8 +14,7 @@ import { moviesList } from "../../utils/constants/moviesList";
 function App() {
   const [currentUser, setCurrentUser] = React.useState({
     name: "Daria",
-    email: "dashann@mail.ru",
-    password: "12345678",
+    email: "dashann@mail.ru"
   });
   const [loggedIn, setLoggedIn] = React.useState(true);
 

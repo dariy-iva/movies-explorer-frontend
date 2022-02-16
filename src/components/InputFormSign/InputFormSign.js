@@ -2,7 +2,7 @@ import React from "react";
 import "./InputFormSign.css";
 
 function Input({ value, onChange, config }) {
-  const { label, type, minLength = "", maxLength = "" } = config;
+  const { label, type, minLength = "", maxLength = "", name } = config;
 
   return (
     <label className="input__field">
@@ -10,7 +10,7 @@ function Input({ value, onChange, config }) {
       <input
         type={type}
         className="input"
-        name={value}
+        name={name}
         required
         minLength={minLength}
         maxLength={maxLength}
