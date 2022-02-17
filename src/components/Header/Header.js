@@ -1,12 +1,9 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
-import Logo from "../Logo/Logo"
+import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 
-function Header() {
-  const location = useLocation();
-  const path = location.pathname;
+export default function Header({ isLoggedIn }) {
   const [isOpenMenu, setIsOpenMenu] = React.useState(false);
 
   function handleMenuOpen() {
@@ -18,14 +15,12 @@ function Header() {
   }
 
   return (
-    <header
-      className={`header ${path === "/" && "header_color"}`}
-    >
+    <header className={`header ${!isLoggedIn && "header_color"}`}>
       <Logo />
       <div
         className={`header__overlay ${isOpenMenu && "header__overlay_visible"}`}
       />
-      <Navigation isOpenMenu={isOpenMenu} onMenuClose={handleMenuClose} />
+      <Navigation isOpenMenu={isOpenMenu} onMenuClose={handleMenuClose} isLoggedIn={isLoggedIn} />
       {isOpenMenu ? (
         <button
           className="header__button header__button_menu_close"
@@ -33,7 +28,7 @@ function Header() {
           onClick={handleMenuClose}
         />
       ) : (
-        path !== "/" && (
+        isLoggedIn && (
           <button
             className="header__button header__button_menu_open"
             type="button"
@@ -44,5 +39,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

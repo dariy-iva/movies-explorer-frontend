@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputFormSign.css";
 
-function Input({ value, onChange, config }) {
+export default function Input({ value, onChange, config }) {
   const { label, type, minLength = "", maxLength = "", name } = config;
 
   return (
@@ -21,5 +21,3 @@ function Input({ value, onChange, config }) {
     </label>
   );
 }
-
-export default Input;

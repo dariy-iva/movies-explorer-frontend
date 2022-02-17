@@ -2,10 +2,10 @@ import React from "react";
 import "./Login.css";
 import FormSign from "../FormSign/FormSign";
 import InputFormSign from "../InputFormSign/InputFormSign";
-import { inputConfig } from "../../utils/constants/inputConfig";
+import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
-function Login() {
+export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -35,6 +35,7 @@ function Login() {
           title="Рады видеть!"
           buttonSubmit="Войти"
           onSubmit={handleSubmit}
+          isNewUser={false}
         >
           <InputFormSign
             value={email}
@@ -51,5 +52,3 @@ function Login() {
     </>
   );
 }
-
-export default Login;

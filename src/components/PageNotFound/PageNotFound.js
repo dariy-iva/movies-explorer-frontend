@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./PageNotFound.css";
 
-function PageNotFound() {
+export default function PageNotFound() {
   return (
     <div className="not-found">
       <h2 className="not-found__title">
@@ -15,5 +15,3 @@ function PageNotFound() {
     </div>
   );
 }
-
-export default PageNotFound;

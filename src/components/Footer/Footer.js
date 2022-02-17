@@ -1,11 +1,12 @@
 import React from "react";
 import "./Footer.css";
-import { myContacts } from "../../utils/constants/myContactsAndLinks";
+import { dataStudent } from "../../utils/constants/dataStudent";
 
-function Footer() {
+export default function Footer() {
+  const { contacts } = dataStudent;
   return (
     <footer className="footer">
-      <p className="footer__title footer__text">
+      <p className="footer__description footer__text">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </p>
       <div className="footer__container">
@@ -20,21 +21,19 @@ function Footer() {
               Яндекс.Практикум
             </a>
           </li>
-          {myContacts.map(contact => (
-            <li key={myContacts.indexOf(contact)}>
-            <a
-              href={contact.link}
-              target="blank"
-              className="footer__link footer__text"
-            >
-              {contact.name}
-            </a>
-          </li>
+          {contacts.map((contact) => (
+            <li key={contacts.indexOf(contact)}>
+              <a
+                href={contact.link}
+                target="blank"
+                className="footer__link footer__text"
+              >
+                {contact.name}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
     </footer>
   );
 }
-
-export default Footer;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchForm.css";
 
-function SearchForm() {
+export default function SearchForm() {
   const [movie, setmovie] = React.useState("");
   const [shortMovie, setShortMovie] = React.useState(true);
 
@@ -54,5 +54,3 @@ function SearchForm() {
     </section>
   );
 }
-
-export default SearchForm;

@@ -2,10 +2,10 @@ import React from "react";
 import "./Register.css";
 import FormSign from "../FormSign/FormSign";
 import InputFormSign from "../InputFormSign/InputFormSign";
-import { inputConfig } from "../../utils/constants/inputConfig";
+import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
-function Register() {
+export default function Register() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -41,6 +41,7 @@ function Register() {
           title="Добро пожаловать!"
           buttonSubmit="Зарегистрироваться"
           onSubmit={handleSubmit}
+          isNewUser={true}
         >
           <InputFormSign
             value={name}
@@ -62,5 +63,3 @@ function Register() {
     </>
   );
 }
-
-export default Register;

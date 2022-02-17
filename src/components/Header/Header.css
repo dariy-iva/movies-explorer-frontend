@@ -53,7 +53,7 @@
 .header__button_menu_close {
   height: 22px;
   width: 22px;
-  background: url(../../images/button__close_menu.svg) no-repeat center;
+  background: url(../../images/button__close.svg) no-repeat center;
   position: fixed;
   z-index: 2;
   top: 22px;

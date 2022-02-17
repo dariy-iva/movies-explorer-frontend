@@ -1,14 +1,15 @@
 import React from "react";
 import "./Portfolio.css";
-import { myProjects } from "../../../utils/constants/myContactsAndLinks";
+import { dataStudent } from "../../../utils/constants/dataStudent";
 
-function Portfolio() {
+export default function Portfolio() {
+  const { projects } = dataStudent;
   return (
     <section className="portfolio">
       <h3 className="portfolio__title">Портфолио</h3>
       <ul className="portfolio__list">
-        {myProjects.map((project) => (
-          <li key={myProjects.indexOf(project)} className="portfolio__item">
+        {projects.map((project) => (
+          <li key={projects.indexOf(project)} className="portfolio__item">
             <a href={project.link} className="portfolio__link" target="blank">
               {project.name}
             </a>
@@ -18,5 +19,3 @@ function Portfolio() {
     </section>
   );
 }
-
-export default Portfolio;

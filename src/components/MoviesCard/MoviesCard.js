@@ -1,21 +1,16 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
-import image from "../../images/card__img.webp";
+import imageURL from "../../images/card__img.webp";
 
-function MoviesCard({ card }) {
-  const { name, duration, owner } = card;
+export default function MoviesCard({ card, isSavedMoviesPage }) {
+  const { nameRU, trailerLink, duration, owner } = card;
   const [isHover, setIsHover] = React.useState(false);
 
-  const location = useLocation();
-  const path = location.pathname;
-
-  const buttonClassName =
-    path === "/saved-movies"
-      ? isHover && "card__button_type_delete"
-      : owner
-      ? "card__button_type_like-active"
-      : "card__button_type_like-disactive";
+  const buttonClassName = isSavedMoviesPage
+    ? isHover && "card__button_type_delete"
+    : owner
+    ? "card__button_type_like-active"
+    : "card__button_type_like-disactive";
 
   function handleLikeClick() {}
 
@@ -33,9 +28,11 @@ function MoviesCard({ card }) {
       onMouseOver={handleMouseOverCard}
       onMouseOut={handleMouseOutCard}
     >
-      <img src={image} alt={name} className="card__img" />
+      <a href={trailerLink} className="card__trailer-link" target="blanck">
+        <img src={imageURL} alt={nameRU} className="card__img" />
+      </a>
       <div className="card__info">
-        <p className="card__name">{name}</p>
+        <p className="card__name">{nameRU}</p>
         <p className="card__duration">{duration}</p>
         <button
           type="button"
@@ -46,5 +43,3 @@ function MoviesCard({ card }) {
     </article>
   );
 }
-
-export default MoviesCard;

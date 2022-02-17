@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import Header from "../Header/Header";
-import { inputConfig } from "../../utils/constants/inputConfig";
+import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-function Profile() {
+export default function Profile() {
   const currentUser = React.useContext(CurrentUserContext);
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
@@ -32,7 +32,7 @@ function Profile() {
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="profile">
         <h2 className="profile__title">{`Привет, ${name}!`}</h2>
         <form
@@ -80,5 +80,3 @@ function Profile() {
     </>
   );
 }
-
-export default Profile;

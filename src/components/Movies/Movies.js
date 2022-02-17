@@ -4,20 +4,16 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import Preloader from "../Preloader/Preloader";
 
-
-function Movies({movies}) {
+export default function Movies({ movies }) {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="movies">
         <SearchForm />
-        <MoviesCardList movies={movies} />
+        <MoviesCardList movies={movies} isSavedMoviesPage={false} />
       </main>
       <Footer />
     </>
   );
 }
-
-export default Movies;

@@ -5,17 +5,15 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function SavedMovies({movies}) {
+export default function SavedMovies({ movies }) {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="saved-movies">
         <SearchForm />
-        <MoviesCardList movies={movies} />
+        <MoviesCardList movies={movies} isSavedMoviesPage={true} />
       </main>
       <Footer />
     </>
   );
 }
-
-export default SavedMovies;

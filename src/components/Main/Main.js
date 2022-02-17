@@ -9,10 +9,10 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main() {
+export default function Main() {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={false} />
       <main className="main">
         <Promo />
         <NavTab />
@@ -25,5 +25,3 @@ function Main() {
     </>
   );
 }
-
-export default Main;

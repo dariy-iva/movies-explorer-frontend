@@ -1,14 +1,15 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./FormSign.css";
 
-function FormSign({ name, title, buttonSubmit, children, onSubmit }) {
-  const location = useLocation();
-  const path = location.pathname;
-  const pathRedirection = path === "/signup" ? "/signin" : "/signup";
-  const formSignText =
-    path === "/signup" ? "Уже зарегистрированы?" : "Ещё не зарегистрированы?";
-  const formSignTextLink = path === "/signup" ? "Войти" : "Регистрация";
+export default function FormSign(props) {
+  const { name, title, buttonSubmit, children, onSubmit, isNewUser } = props;
+
+  const pathRedirection = isNewUser ? "/signin" : "/signup";
+  const textRedirection = isNewUser
+    ? "Уже зарегистрированы?"
+    : "Ещё не зарегистрированы?";
+  const linkTextRedirection = isNewUser ? "Войти" : "Регистрация";
 
   return (
     <>
@@ -20,13 +21,11 @@ function FormSign({ name, title, buttonSubmit, children, onSubmit }) {
         </button>
       </form>
       <p className="formSign__text">
-        {formSignText}
+        {textRedirection}
         <Link className="formSign__link" to={pathRedirection}>
-          {formSignTextLink}
+          {linkTextRedirection}
         </Link>
       </p>
     </>
   );
 }
-
-export default FormSign;

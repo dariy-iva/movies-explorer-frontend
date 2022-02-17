@@ -1,7 +1,7 @@
 import React from "react";
 import "./Promo.css";
 
-function Promo() {
+export default function Promo() {
   return (
     <section className="promo">
       <h1 className="promo__title">
@@ -10,5 +10,3 @@ function Promo() {
     </section>
   );
 }
-
-export default Promo;

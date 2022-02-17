@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutProject.css";
 
-function AboutProject() {
+export default function AboutProject() {
   return (
     <section className="about-project" id="about-project">
       <h2 className="main__title">О проекте</h2>
@@ -34,5 +34,3 @@ function AboutProject() {
     </section>
   );
 }
-
-export default AboutProject;

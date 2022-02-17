@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavTab.css";
 
-function NavTab() {
+export default function NavTab() {
   const navLinks = [
     {
       text: "О проекте",
@@ -30,5 +30,3 @@ function NavTab() {
     </section>
   );
 }
-
-export default NavTab;
