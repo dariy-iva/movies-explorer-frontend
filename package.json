@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r ./build/* dashann@84.201.172.179:/home/dashann/movies-explorer-frontend/build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +50,5 @@
   "bugs": {
     "url": "https://github.com/dariy-iva/movies-explorer-frontend/issues/"
   },
-  "homepage": "https://github.com/movies-explorer-frontend/#readme"
+  "homepage": "https://movies.dariy-iva.nomoredomains.work/"
 }
