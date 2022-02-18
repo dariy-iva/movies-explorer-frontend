@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .formSign__title {
@@ -20,7 +21,7 @@
   border: none;
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 6px;
+  grid-gap: 18px;
 }
 
 .formSign__submit-button {
@@ -64,7 +65,7 @@
 
 @media (max-width: 767px) {
   .formSign__form {
-    min-height: 503px;
+    min-height: 470px;
   }
   .formSign__title {
     padding: 50px 0 80px;

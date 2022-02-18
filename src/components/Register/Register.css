@@ -10,7 +10,6 @@
 @media (max-width: 767px) {
   .register {
     width: 260px;
-    justify-content: start;
-    padding-top: 56px;
+    align-items: center;
   }
 }

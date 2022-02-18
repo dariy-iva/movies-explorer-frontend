@@ -31,7 +31,7 @@ export default function Navigation({ isOpenMenu, onMenuClose, isLoggedIn }) {
       ) : (
         <nav
           className={`menu ${
-            isOpenMenu ? "menu_sidebar_open" : "menu_sidebar_close"
+            isOpenMenu ? "menu_sidebar" : "menu_sidebar_close"
           }`}
         >
           {linksLoggedUserConfig.map((link) => (

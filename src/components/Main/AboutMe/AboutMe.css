@@ -90,7 +90,7 @@
 
 @media (max-width: 767px) {
   .about-me {
-    padding: 70px var(--main-padding-wrap);
+    padding: 70px 14px;
   }
   .about-me__columns {
     padding-top: 60px;

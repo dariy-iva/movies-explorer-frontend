@@ -34,7 +34,7 @@
 }
 
 .card__info {
-	padding: 16px;
+	padding: 12px 16px 16px;
 	display: grid;
   grid-template-columns: minmax(min-content, 290px) 30px;
 	grid-template-rows: repeat(2, minmax(min-content, max-content));
@@ -105,7 +105,7 @@
 	}
 	
 	.card__info {
-		padding: 14px;
+		padding: 10px 14px 14px;
 		grid-template-columns: minmax(min-content, 260px) 30px;
 		grid-row-gap: 15px;
 	}

@@ -1,7 +1,7 @@
 .promo {
   min-height: 542px;
   box-sizing: border-box;
-  padding: 18px var(--main-padding-wrap) 18px;
+  padding: 18px var(--main-padding-wrap) 41px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,6 +24,7 @@
   .promo {
     min-height: 802px;
     background-position: center;
+    padding-bottom: 18px;
   }
 }
 
@@ -32,6 +33,7 @@
     min-height: 588px;
     background-position: center 160px;
     background-size: 248px 248px;
+    padding: 18px 10px 38px;
   }
   .promo__title {
     max-width: 300px;

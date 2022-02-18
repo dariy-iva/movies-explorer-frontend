@@ -1,4 +1,8 @@
 .logo {
+  display: flex;
+}
+
+.logo__img {
   width: 38px;
   height: 38px;
 }

@@ -13,5 +13,6 @@
 @media (max-width: 767px) {
   .login {
     width: 260px;
+    align-items: center;
   }
 }

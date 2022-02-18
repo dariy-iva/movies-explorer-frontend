@@ -52,8 +52,8 @@
   background: url(../../images/button__close.svg) no-repeat center;
   position: fixed;
   z-index: 2;
-  top: 22px;
-  right: 22px;
+  top: 30px;
+  right: 27px;
 }
 
 @media (max-width: 1023px) {
@@ -68,5 +68,9 @@
 @media (max-width: 767px) {
   .header {
     padding: 18px 14px 0;
+  }
+  .header__button_menu_close {
+    top: 17px;
+    right: 18px;
   }
 }

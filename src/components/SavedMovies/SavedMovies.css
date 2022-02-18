@@ -1,5 +1,7 @@
 .saved-movies {
   padding: 98px 70px 327px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1023px) {

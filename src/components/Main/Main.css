@@ -49,7 +49,7 @@
 
 @media (max-width: 767px) {
   .main {
-    --main-padding-wrap: 14px;
+    --main-padding-wrap: 18px;
   }
   .main__title {
     font-size: 18px;

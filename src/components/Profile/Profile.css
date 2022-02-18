@@ -1,7 +1,7 @@
 .profile {
   width: 410px;
   margin: 0;
-  padding-top: 102px;
+  padding-top: 94px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,7 @@
 
 .profile__fieldset {
   margin: 0;
-  padding: 0 0 220px;
+  padding: 0 0 200px;
   border: none;
   display: grid;
   grid-template-columns: 1fr;
@@ -117,7 +117,7 @@
     padding-bottom: 96px;
   }
   .profile__fieldset {
-    padding-bottom: 210px;
+    padding-bottom: 188px;
   }
 }
 
@@ -130,7 +130,7 @@
     padding-bottom: 80px;
   }
   .profile__fieldset {
-    padding-bottom: 379px;
+    padding-bottom: 360px;
   }
   .profile__submit-button {
     font-size: 12px;

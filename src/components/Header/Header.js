@@ -20,21 +20,24 @@ export default function Header({ isLoggedIn }) {
       <div
         className={`header__overlay ${isOpenMenu && "header__overlay_visible"}`}
       />
-      <Navigation isOpenMenu={isOpenMenu} onMenuClose={handleMenuClose} isLoggedIn={isLoggedIn} />
-      {isOpenMenu ? (
+      <Navigation
+        isOpenMenu={isOpenMenu}
+        onMenuClose={handleMenuClose}
+        isLoggedIn={isLoggedIn}
+      />
+      {isOpenMenu && (
         <button
           className="header__button header__button_menu_close link-hover"
           type="button"
           onClick={handleMenuClose}
         />
-      ) : (
-        isLoggedIn && (
-          <button
-            className="header__button header__button_menu_open link-hover"
-            type="button"
-            onClick={handleMenuOpen}
-          />
-        )
+      )}
+      {isLoggedIn && (
+        <button
+          className="header__button header__button_menu_open link-hover"
+          type="button"
+          onClick={handleMenuOpen}
+        />
       )}
     </header>
   );
