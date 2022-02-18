@@ -28,7 +28,11 @@ export default function MoviesCard({ card, isSavedMoviesPage }) {
       onMouseOver={handleMouseOverCard}
       onMouseOut={handleMouseOutCard}
     >
-      <a href={trailerLink} className="card__trailer-link" target="blanck">
+      <a
+        href={trailerLink}
+        className="card__trailer-link"
+        target="blanck"
+      >
         <img src={imageURL} alt={nameRU} className="card__img" />
       </a>
       <div className="card__info">
@@ -38,7 +42,8 @@ export default function MoviesCard({ card, isSavedMoviesPage }) {
           type="button"
           className={`card__button ${buttonClassName}`}
           onClick={handleLikeClick}
-        />
+        >
+        </button>
       </div>
     </article>
   );

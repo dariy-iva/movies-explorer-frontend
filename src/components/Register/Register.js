@@ -1,7 +1,7 @@
 import React from "react";
 import "./Register.css";
 import FormSign from "../FormSign/FormSign";
-import InputFormSign from "../InputFormSign/InputFormSign";
+import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
@@ -42,6 +42,7 @@ export default function Register() {
           buttonSubmit="Зарегистрироваться"
           onSubmit={handleSubmit}
           isNewUser={true}
+          isValid={true}
         >
           <InputFormSign
             value={name}

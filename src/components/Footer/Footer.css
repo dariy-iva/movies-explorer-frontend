@@ -1,5 +1,7 @@
 .footer {
   padding: 0 70px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .footer__text {
   font-weight: normal;
@@ -38,12 +40,7 @@
 
 .footer__link {
   text-decoration: none;
-  transition: opacity .3s;
   color: var(--black);
-}
-
-.footer__link:hover {
-  opacity: .6;
 }
 
 @media (max-width: 1023px) {

@@ -1,5 +1,8 @@
 .main {
   --main-padding-wrap: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .main__title {
@@ -26,7 +29,6 @@
 
 .main__text_color_white {
   color: var(--white);
-  ;
 }
 
 .main__text_color_grey {
@@ -52,7 +54,6 @@
   .main__title {
     font-size: 18px;
     padding-bottom: 28px;
-
   }
   .main__text {
     font-size: 11px;

@@ -24,7 +24,7 @@
   background: rgba(0, 0, 0, 0.5);
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.4s, opacity 0.4s;
+  transition: visibility .4s, opacity .4s;
 }
 
 .header__overlay_visible {
@@ -35,11 +35,6 @@
 .header__button {
   border: none;
   cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.header__button:hover {
-  opacity: 0.6;
 }
 
 .header__button_menu_open {

@@ -31,7 +31,6 @@
   letter-spacing: -0.04em;
   color: var(--black);
   text-decoration: none;
-  transition: opacity 0.3s;
   display: flex;
   justify-content: space-between;
 }
@@ -44,10 +43,6 @@
   background-position: center;
   width: 21px;
   margin: 5px 5px 0 0;
-}
-
-.portfolio__link:hover {
-  opacity: 0.6;
 }
 
 @media (max-width: 1023px) {

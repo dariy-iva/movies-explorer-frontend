@@ -47,7 +47,7 @@ export default function SearchForm() {
           />
           Короткометражки
         </label>
-        <button type="submit" className="search__submit-button">
+        <button type="submit" className="search__submit-button link-hover">
           Найти
         </button>
       </form>

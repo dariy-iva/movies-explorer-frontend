@@ -23,14 +23,14 @@ export default function Header({ isLoggedIn }) {
       <Navigation isOpenMenu={isOpenMenu} onMenuClose={handleMenuClose} isLoggedIn={isLoggedIn} />
       {isOpenMenu ? (
         <button
-          className="header__button header__button_menu_close"
+          className="header__button header__button_menu_close link-hover"
           type="button"
           onClick={handleMenuClose}
         />
       ) : (
         isLoggedIn && (
           <button
-            className="header__button header__button_menu_open"
+            className="header__button header__button_menu_open link-hover"
             type="button"
             onClick={handleMenuOpen}
           />

@@ -10,7 +10,7 @@ export default function Portfolio() {
       <ul className="portfolio__list">
         {projects.map((project) => (
           <li key={projects.indexOf(project)} className="portfolio__item">
-            <a href={project.link} className="portfolio__link" target="blank">
+            <a href={project.link} className="portfolio__link link-hover" target="blank">
               {project.name}
             </a>
           </li>

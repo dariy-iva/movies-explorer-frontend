@@ -21,7 +21,7 @@ export default function NavTab() {
       <ul className="nav-tab__links">
         {navLinks.map(item => (
           <li key={navLinks.indexOf(item)}>
-          <a href={item.link} className="nav-tab__link">
+          <a href={item.link} className="nav-tab__link link-hover">
             {item.text}
           </a>
         </li>

@@ -12,10 +12,14 @@
   box-sizing: border-box;
   outline: none;
   margin: 0;
+  transition: border-color .3s;
 }
 
+.input:focus {
+  border-color: var(--black);
+}
 .input:invalid {
-  color: (--color-invalid-input-red);
+  color: var(--color-invalid-input-red);
 }
 
 .input__field {

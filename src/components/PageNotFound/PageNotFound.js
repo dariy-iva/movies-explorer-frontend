@@ -9,7 +9,7 @@ export default function PageNotFound() {
       404
       </h2>
       <p className="not-found__text">Страница не найдена</p>
-      <Link className="not-found__link-redirect" to="/">
+      <Link className="not-found__link-redirect link-hover" to="/">
         Назад
       </Link>
     </div>

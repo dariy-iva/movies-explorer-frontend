@@ -21,7 +21,6 @@
   font-weight: normal;
   line-height: 1.3;
   text-decoration: none;
-  transition: opacity 0.3s;
 }
 
 .menu__link_page_movies_active {
@@ -30,10 +29,6 @@
 
 .menu__link_page_main {
   font-weight: 500;
-}
-
-.menu__link:hover {
-  opacity: 0.6;
 }
 
 .menu__link_page_main:not(:last-child) {

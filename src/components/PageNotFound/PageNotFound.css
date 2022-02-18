@@ -34,11 +34,6 @@
   color: var(--black);
   position: absolute;
   bottom: 60px;
-  transition: opacity .3s;
-}
-
-.not-found__link-redirect:hover {
-  opacity: .6;
 }
 
 @media (max-width: 1023px) {

@@ -21,7 +21,7 @@ export default function Navigation({ isOpenMenu, onMenuClose, isLoggedIn }) {
           {linksForSignConfig.map((link) => (
             <Link
               to={link.path}
-              className="menu__link menu__link_page_main"
+              className="menu__link menu__link_page_main link-hover"
               key={linksForSignConfig.indexOf(link)}
             >
               {link.text}
@@ -39,8 +39,8 @@ export default function Navigation({ isOpenMenu, onMenuClose, isLoggedIn }) {
               to={link.path}
               className={(props) =>
                 props.isActive
-                  ? "menu__link menu__link_page_movies menu__link_page_movies_active"
-                  : "menu__link menu__link_page_movies"
+                  ? "menu__link menu__link_page_movies link-hover menu__link_page_movies_active"
+                  : "menu__link menu__link_page_movies link-hover"
               }
               end
               onClick={onMenuClose}

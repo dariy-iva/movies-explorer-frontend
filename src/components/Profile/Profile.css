@@ -1,7 +1,10 @@
 .profile {
   width: 410px;
-  margin: 0 auto;
+  margin: 0;
   padding-top: 102px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile__title {
@@ -18,6 +21,8 @@
 .profile__form {
   width: 100%;
   padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile__fieldset {
@@ -36,8 +41,10 @@
   font-weight: 500;
   color: var(--black);
   padding-bottom: 16px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   position: relative;
+  box-sizing: border-box;
 }
 
 .profile__field:not(:last-child) {
@@ -52,12 +59,15 @@
   color: (--black);
   outline: none;
   margin: 0;
-  flex-grow: 1;
   text-align: end;
 }
 
+.profile__input:focus {
+  text-align: center;
+}
+
 .profile__input:invalid {
-  color: (--color-invalid-input-red);
+  color: var(--color-invalid-input-red);
 }
 
 .profile__error {
@@ -72,8 +82,6 @@
 }
 
 .profile__submit-button {
-  display: flex;
-  justify-content: center;
   font-size: 13px;
   line-height: 1.23;
   font-weight: normal;
@@ -82,27 +90,23 @@
   background: none;
   cursor: pointer;
   padding: 0;
-  margin: 0 auto;
-  transition: opacity 0.3s;
 }
 
-.profile__submit-button:hover {
-  opacity: 0.6;
+.profile__submit-button:disabled {
+  color: var(--color-text-gray);
+  cursor: auto;
+}
+
+.profile__submit-button:disabled:hover {
+  opacity: 1;
 }
 
 .profile__link-out {
-  display: block;  
   font-size: 13px;
   line-height: 1.23;
   font-weight: 500;
   color: var(--color-invalid-input-red);
   text-decoration: none;
-  text-align: center;
-  transition: opacity 0.3s;
-}
-
-.profile__link-out:hover {
-  opacity: 0.6;
 }
 
 @media (max-width: 1023px) {

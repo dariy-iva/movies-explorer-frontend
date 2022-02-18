@@ -34,11 +34,16 @@
   background-color: var(--black);
   border-radius: 3px;
   cursor: pointer;
-  transition: opacity 0.3s;
 }
 
-.formSign__submit-button:hover {
-  opacity: 0.6;
+.formSign__submit-button:disabled {
+  background-color: var(--color-bcg-dark-gray);
+  color: var(--black);
+  cursor: auto;
+}
+
+.formSign__submit-button:disabled:hover {
+  opacity: 1;
 }
 
 .formSign__text {
@@ -55,11 +60,6 @@
   text-decoration: none;
   color: var(--black);
   margin-left: 6px;
-  transition: opacity 0.3s;
-}
-
-.formSign__link:hover {
-  opacity: 0.6;
 }
 
 @media (max-width: 767px) {

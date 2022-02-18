@@ -39,11 +39,6 @@
   background-position: top 3px right 3px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.popup__reset-button:hover {
-  opacity: 0.6;
 }
 
 @media (max-width: 767px) {

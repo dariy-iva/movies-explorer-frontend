@@ -7,7 +7,7 @@ export default function InfoTooltipPopup(props) {
   return (
     <div className={`popup ${isOpen && "popup_opened"}`}>
         <p className="popup__text">{serverMessage}</p>
-        <button type="button" className="popup__reset-button" onClick={onClose} />
+        <button type="button" className="popup__reset-button link-hover" onClick={onClose} />
     </div>
   );
 }

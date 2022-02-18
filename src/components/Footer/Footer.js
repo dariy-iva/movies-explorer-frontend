@@ -16,7 +16,7 @@ export default function Footer() {
             <a
               href="https://practicum.yandex.ru"
               target="blank"
-              className="footer__link footer__text"
+              className="footer__link footer__text link-hover"
             >
               Яндекс.Практикум
             </a>
@@ -26,7 +26,7 @@ export default function Footer() {
               <a
                 href={contact.link}
                 target="blank"
-                className="footer__link footer__text"
+                className="footer__link footer__text link-hover"
               >
                 {contact.name}
               </a>

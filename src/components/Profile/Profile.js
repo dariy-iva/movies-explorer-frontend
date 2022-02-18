@@ -69,11 +69,15 @@ export default function Profile() {
               <span className="profile__error"></span>
             </label>
           </fieldset>
-          <button type="submit" className="profile__submit-button">
+          <button
+            type="submit"
+            className="profile__submit-button link-hover"
+            disabled={false}
+          >
             Редактировать
           </button>
         </form>
-        <Link className="profile__link-out" to="/" onClick={""}>
+        <Link className="profile__link-out link-hover" to="/" onClick={""}>
           Выйти из аккаунта
         </Link>
       </main>

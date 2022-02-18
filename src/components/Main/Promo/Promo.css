@@ -1,10 +1,16 @@
 .promo {
-  padding: 202px var(--main-padding-wrap) 224px;
+  min-height: 542px;
+  box-sizing: border-box;
+  padding: 18px var(--main-padding-wrap) 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: var(--color-bcg-pink) url(../../../images/main__banner.svg) no-repeat center 100px;
 }
 
 .promo__title {
-  margin: 0 auto;
+  margin: 0;
   max-width: 730px;
   font-size: 50px;
   line-height: 1.16;
@@ -16,14 +22,14 @@
 
 @media (max-width: 1023px) {
   .promo {
-    padding: 344px var(--main-padding-wrap) 342px;
+    min-height: 802px;
     background-position: center;
   }
 }
 
 @media (max-width: 767px) {
   .promo {
-    padding: 225px var(--main-padding-wrap) 248px;
+    min-height: 588px;
     background-position: center 160px;
     background-size: 248px 248px;
   }

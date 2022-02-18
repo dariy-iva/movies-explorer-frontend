@@ -20,7 +20,7 @@ export default function AboutMe() {
                 <a
                   href={contact.link}
                   target="blank"
-                  className="about-me__contact"
+                  className="about-me__contact link-hover"
                 >
                   {contact.name}
                 </a>

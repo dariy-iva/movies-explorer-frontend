@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import FormSign from "../FormSign/FormSign";
-import InputFormSign from "../InputFormSign/InputFormSign";
+import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
@@ -36,6 +36,7 @@ export default function Login() {
           buttonSubmit="Войти"
           onSubmit={handleSubmit}
           isNewUser={false}
+          isValid={true}
         >
           <InputFormSign
             value={email}

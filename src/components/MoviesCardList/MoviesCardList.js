@@ -42,7 +42,7 @@ export default function MoviesCardList({ movies, isSavedMoviesPage }) {
         })}
       </ul>
       {!isSavedMoviesPage && (
-        <button className="cards__loader" onClick={handleCardsLoaderClick}>
+        <button className="cards__loader link-hover" onClick={handleCardsLoaderClick}>
           Ещё
         </button>
       )}

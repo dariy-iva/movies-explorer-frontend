@@ -6,7 +6,7 @@ import logo from "../../images/logo.svg";
 export default function Logo() {
 
   return (
-    <Link to="/">
+    <Link to="/" className="link-hover">
       <img src={logo} alt="логотип" className="logo" />
     </Link>
   );

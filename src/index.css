@@ -24,12 +24,20 @@
   align-items: center;
   box-sizing: border-box;
   --black: #000;
-  --white: #FFF;
-  --color-bcg-pink: #F3C1F8;
-  --color-bcg-light-gray: #F2F2F2;
-  --color-bcg-gray: #F5F5F5;
-  --color-bcg-dark-gray: #E8E8E8;
-  --color-text-gray: #A0A0A0;
-  --color-invalid-input-red: #FF4062;
+  --white: #fff;
+  --color-bcg-pink: #f3c1f8;
+  --color-bcg-light-gray: #f2f2f2;
+  --color-bcg-gray: #f5f5f5;
+  --color-bcg-dark-gray: #e8e8e8;
+  --color-text-gray: #a0a0a0;
+  --color-invalid-input-red: #ff4062;
   background-color: var(--white);
+}
+
+.link-hover {
+  transition: opacity 0.3s;
+}
+
+.link-hover:hover {
+  opacity: 0.6;
 }

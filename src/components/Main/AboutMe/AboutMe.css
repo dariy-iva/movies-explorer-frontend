@@ -61,11 +61,6 @@
   font-weight: 500;
   color: var(--black);
   text-decoration: none;
-  transition: opacity 0.3s;
-}
-
-.about-me__contact:hover {
-  opacity: 0.6;
 }
 
 @media (max-width: 1023px) {
