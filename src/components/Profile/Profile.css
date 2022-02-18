@@ -1,5 +1,5 @@
 .profile {
-  max-width: 410px;
+  width: 410px;
   margin: 0 auto;
   padding-top: 102px;
 }
@@ -120,7 +120,7 @@
 @media (max-width: 767px) {
   .profile {
     padding-top: 88px;
-    max-width: 260px;
+    width: 260px;
   }
   .profile__title {
     padding-bottom: 80px;

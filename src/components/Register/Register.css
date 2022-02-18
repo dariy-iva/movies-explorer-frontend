@@ -1,5 +1,5 @@
 .register {
-  max-width: 396px;
+  width: 396px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
 
 @media (max-width: 767px) {
   .register {
-    max-width: 260px;
+    width: 260px;
     justify-content: start;
     padding-top: 56px;
   }

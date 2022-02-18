@@ -24,7 +24,6 @@ export default function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
         <Routes>
           <Route exact path="/" element={<Main />} />
           <Route path="/movies" element={<Movies movies={moviesList} />} />
@@ -38,7 +37,6 @@ export default function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <InfoTooltipPopup isOpen={false} />
-      </div>
     </CurrentUserContext.Provider>
   );
 }

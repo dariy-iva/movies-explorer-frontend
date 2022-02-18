@@ -1,5 +1,5 @@
 .login {
-  max-width: 396px;
+  width: 396px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,6 @@
 
 @media (max-width: 767px) {
   .login {
-    max-width: 260px;
+    width: 260px;
   }
 }
