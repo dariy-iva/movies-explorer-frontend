@@ -1,0 +1,17 @@
+.saved-movies {
+  padding: 98px 70px 327px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1023px) {
+  .saved-movies {
+    padding: 96px 30px 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .saved-movies {
+    padding: 96px 10px 246px;
+  }
+}

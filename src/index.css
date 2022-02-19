@@ -1,0 +1,43 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/Inter/inter.css);
+
+.body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page {
+  font-family: "Inter", Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  width: 100%;
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  --black: #000;
+  --white: #fff;
+  --color-bcg-pink: #f3c1f8;
+  --color-bcg-light-gray: #f2f2f2;
+  --color-bcg-gray: #f5f5f5;
+  --color-bcg-dark-gray: #e8e8e8;
+  --color-text-gray: #a0a0a0;
+  --color-invalid-input-red: #ff4062;
+  background-color: var(--white);
+}
+
+.link-hover {
+  transition: opacity 0.3s;
+}
+
+.link-hover:hover {
+  opacity: 0.6;
+}
