@@ -21,7 +21,7 @@
   border: none;
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 18px;
+  grid-gap: 24px;
 }
 
 .formSign__submit-button {

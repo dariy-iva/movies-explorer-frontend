@@ -1,63 +1,49 @@
 import React from "react";
 import "./Register.css";
+import useFormWithValidation from "../../utils/FormValidator";
 import FormSign from "../FormSign/FormSign";
 import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
 export default function Register() {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  React.useEffect(() => {
-    setName("");
-    setEmail("");
-    setPassword("");
-  }, []);
-
-  function handleChangeInputName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeInputEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleChangeInputPassword(e) {
-    setPassword(e.target.value);
-  }
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
+    resetForm();
   }
 
   return (
     <>
       <main className="register">
-      <Logo />
+        <Logo />
         <FormSign
           name="register"
           title="Добро пожаловать!"
           buttonSubmit="Зарегистрироваться"
           onSubmit={handleSubmit}
           isNewUser={true}
-          isValid={true}
+          isValid={isValid}
         >
           <InputFormSign
-            value={name}
-            onChange={handleChangeInputName}
+            value={values.name || ""}
+            onChange={handleChange}
             config={inputConfig.name}
+            error={errors.name || ""}
           />
           <InputFormSign
-            value={email}
-            onChange={handleChangeInputEmail}
+            value={values.email || ""}
+            onChange={handleChange}
             config={inputConfig.email}
+            error={errors.email || ""}
           />
           <InputFormSign
-            value={password}
-            onChange={handleChangeInputPassword}
+            value={values.password || ""}
+            onChange={handleChange}
             config={inputConfig.password}
+            error={errors.password || ""}
           />
         </FormSign>
       </main>

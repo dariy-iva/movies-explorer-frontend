@@ -27,6 +27,7 @@
   line-height: 1.2;
   font-weight: normal;
   color: var(--color-text-gray);
+  position: relative;
 }
 
 .input__error {
@@ -35,5 +36,6 @@
   line-height: 1.2;
   font-weight: normal;
   color: var(--color-invalid-input-red);
-  padding-top: 6px;
+  position: absolute;
+  top: 46px;
 }

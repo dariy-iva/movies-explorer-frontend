@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
+import useFormWithValidation from "../../utils/FormValidator";
 import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 export default function Profile() {
   const currentUser = React.useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid, resetForm } =
+  useFormWithValidation();
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
 
@@ -18,14 +21,6 @@ export default function Profile() {
     setEmail(currentUser.email || "");
   }, [currentUser]);
 
-  function handleChangeInputName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeInputEmail(e) {
-    setEmail(e.target.value);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -34,7 +29,7 @@ export default function Profile() {
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
-        <h2 className="profile__title">{`Привет, ${name}!`}</h2>
+        <h2 className="profile__title">{`Привет, ${currentUser.name || ""}!`}</h2>
         <form
           name="update-profile"
           className="profile__form"
@@ -50,10 +45,10 @@ export default function Profile() {
                 required
                 minLength={nameInput.minLength}
                 maxLength={nameInput.maxLength}
-                value={name}
-                onChange={handleChangeInputName}
+                value={values.name || currentUser.name || ""}
+                onChange={handleChange}
               />
-              <span className="profile__error"></span>
+              <span className="profile__error">{errors.name || ""}</span>
             </label>
             <label className="profile__field">
               {emailInput.label}
@@ -63,16 +58,16 @@ export default function Profile() {
                 name={emailInput.name}
                 required
                 minLength={emailInput.minLength}
-                value={email}
-                onChange={handleChangeInputEmail}
+                value={values.email || currentUser.email || ""}
+                onChange={handleChange}
               />
-              <span className="profile__error"></span>
+              <span className="profile__error">{errors.email || ""}</span>
             </label>
           </fieldset>
           <button
             type="submit"
             className="profile__submit-button link-hover"
-            disabled={false}
+            disabled={!isValid}
           >
             Редактировать
           </button>
