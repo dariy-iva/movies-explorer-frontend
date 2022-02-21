@@ -38,6 +38,7 @@ export default function Register() {
             onChange={handleChange}
             config={inputConfig.email}
             error={errors.email || ""}
+            pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
           />
           <InputFormSign
             value={values.password || ""}

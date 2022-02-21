@@ -9,7 +9,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext";
 export default function Profile() {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, resetForm } =
-  useFormWithValidation();
+    useFormWithValidation();
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
 
@@ -29,7 +29,9 @@ export default function Profile() {
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
-        <h2 className="profile__title">{`Привет, ${currentUser.name || ""}!`}</h2>
+        <h2 className="profile__title">{`Привет, ${
+          currentUser.name || ""
+        }!`}</h2>
         <form
           name="update-profile"
           className="profile__form"
@@ -58,6 +60,7 @@ export default function Profile() {
                 name={emailInput.name}
                 required
                 minLength={emailInput.minLength}
+                pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
                 value={values.email || currentUser.email || ""}
                 onChange={handleChange}
               />

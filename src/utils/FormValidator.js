@@ -12,7 +12,6 @@ export default function useFormWithValidation() {
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
-    console.log(values, name);
   };
 
   const resetForm = React.useCallback(

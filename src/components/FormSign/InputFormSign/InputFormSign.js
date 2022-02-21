@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputFormSign.css";
 
-export default function Input({ value, onChange, config, error }) {
+export default function Input({ value, onChange, config, error, pattern }) {
   const { label, type, minLength = "", maxLength = "", name } = config;
 
   return (
@@ -14,6 +14,7 @@ export default function Input({ value, onChange, config, error }) {
         required
         minLength={minLength}
         maxLength={maxLength}
+        pattern={pattern}
         value={value}
         onChange={onChange}
       />
