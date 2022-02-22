@@ -22,21 +22,35 @@ export default function App() {
     });
   }, []);
 
+  function handleUpdateUser(data) {
+    setCurrentUser(data);
+  }
+
+  function handleSearchMovies(data) {}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-        <Routes>
-          <Route exact path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies movies={moviesList} />} />
-          <Route
-            path="/saved-movies"
-            element={<SavedMovies movies={moviesList} />}
-          />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <InfoTooltipPopup isOpen={false} />
+      <Routes>
+        <Route exact path="/" element={<Main />} />
+        <Route
+          path="/movies"
+          element={<Movies movies={moviesList} onSubmit={handleSearchMovies} />}
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <SavedMovies movies={moviesList} onSubmit={handleSearchMovies} />
+          }
+        />
+        <Route
+          path="/profile"
+          element={<Profile onUpdate={handleUpdateUser} />}
+        />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <InfoTooltipPopup isOpen={false} />
     </CurrentUserContext.Provider>
   );
 }

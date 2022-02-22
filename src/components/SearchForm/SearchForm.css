@@ -14,6 +14,7 @@
     "duration duration";
   grid-gap: 30px 10px;
   justify-content: space-between;
+  position: relative;
 }
 
 .search__text-input {
@@ -37,6 +38,25 @@
 
 .search__text-input::placeholder {
   color: var(--color-text-gray);
+}
+
+.search__error {
+  display: block;
+  position: absolute;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: normal;
+  color: var(--color-invalid-input-red);
+  top: 50px;
+  left: 22px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .2s, opacity .2s;
+}
+
+.search__error_visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .search__duration {
@@ -117,6 +137,9 @@
     padding: 13px 16px;
     font-size: 12px;
     line-height: 1.5;
+  }
+  .search__error {
+    left: 16px;
   }
   .search__duration {
     font-size: 11px;

@@ -1,18 +1,18 @@
 import React from "react";
 import "./SearchForm.css";
+import useFormWithValidation from "../../utils/FormValidator";
 
-export default function SearchForm() {
-  const [movie, setmovie] = React.useState("");
+export default function SearchForm({ onSubmit }) {
+  const { values, handleChange, isValid, resetForm } = useFormWithValidation();
+
   const [shortMovie, setShortMovie] = React.useState(true);
+  const [isValidForm, setIsValidForm] = React.useState(true);
 
   React.useEffect(() => {
-    setmovie("");
-    setShortMovie(true);
-  }, []);
-
-  function handleChangeInputMovie(e) {
-    setmovie(e.target.value);
-  }
+    if (isValid) {
+      setIsValidForm(true);
+    }
+  }, [isValid]);
 
   function handleChangeInputDuration(e) {
     setShortMovie(e.target.checked);
@@ -20,7 +20,13 @@ export default function SearchForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setmovie("");
+    if (!isValid) {
+      setIsValidForm(false);
+    } else {
+      onSubmit(values.movie);
+      resetForm();
+      setShortMovie(true);
+    }
   }
 
   return (
@@ -31,11 +37,16 @@ export default function SearchForm() {
           className="search__text-input"
           placeholder="Фильм"
           name="movie"
-          required
+          minLength="1"
           maxLength="20"
-          value={movie}
-          onChange={handleChangeInputMovie}
+          value={values.movie || ""}
+          onChange={handleChange}
         />
+        <span
+          className={`search__error ${!isValidForm && "search__error_visible"}`}
+        >
+          {!isValidForm && "Нужно ввести ключевое слово"}
+        </span>
         <label className="search__duration">
           <input
             type="checkbox"

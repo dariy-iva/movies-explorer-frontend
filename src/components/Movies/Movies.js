@@ -5,12 +5,12 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-export default function Movies({ movies }) {
+export default function Movies({ movies, onSubmit }) {
   return (
     <>
       <Header isLoggedIn={true} />
       <main className="movies">
-        <SearchForm />
+        <SearchForm onSubmit={onSubmit} />
         <MoviesCardList movies={movies} isSavedMoviesPage={false} />
       </main>
       <Footer />

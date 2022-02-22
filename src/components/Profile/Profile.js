@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-export default function Profile() {
+export default function Profile({ onUpdate }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -15,23 +15,36 @@ export default function Profile() {
 
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [isValidForm, setIsValidForm] = React.useState(false);
 
   React.useEffect(() => {
-    setName(currentUser.name || "");
-    setEmail(currentUser.email || "");
+    setName(currentUser.name);
+    setEmail(currentUser.email);
   }, [currentUser]);
+
+  React.useEffect(() => {
+    if (
+      ((values.name && values.name !== name) ||
+        (values.email && values.email !== email)) &&
+      isValid
+    ) {
+      setIsValidForm(true);
+    } else {
+      setIsValidForm(false);
+    }
+  }, [isValid, values, name, email]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    onUpdate(values);
+    resetForm();
   }
 
   return (
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
-        <h2 className="profile__title">{`Привет, ${
-          currentUser.name || ""
-        }!`}</h2>
+        <h2 className="profile__title">{`Привет, ${name || ""}!`}</h2>
         <form
           name="update-profile"
           className="profile__form"
@@ -47,7 +60,7 @@ export default function Profile() {
                 required
                 minLength={nameInput.minLength}
                 maxLength={nameInput.maxLength}
-                value={values.name || currentUser.name || ""}
+                defaultValue={name}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.name || ""}</span>
@@ -61,7 +74,7 @@ export default function Profile() {
                 required
                 minLength={emailInput.minLength}
                 pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
-                value={values.email || currentUser.email || ""}
+                defaultValue={email}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.email || ""}</span>
@@ -70,7 +83,7 @@ export default function Profile() {
           <button
             type="submit"
             className="profile__submit-button link-hover"
-            disabled={!isValid}
+            disabled={!isValidForm}
           >
             Редактировать
           </button>
