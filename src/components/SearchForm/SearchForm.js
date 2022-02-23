@@ -3,9 +3,9 @@ import "./SearchForm.css";
 import useFormWithValidation from "../../utils/FormValidator";
 
 export default function SearchForm({ onSubmit }) {
-  const { values, handleChange, isValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, isValid } = useFormWithValidation();
 
-  const [shortMovie, setShortMovie] = React.useState(true);
+  const [isShortMovie, setIsShortMovie] = React.useState(true);
   const [isValidForm, setIsValidForm] = React.useState(true);
 
   React.useEffect(() => {
@@ -15,7 +15,7 @@ export default function SearchForm({ onSubmit }) {
   }, [isValid]);
 
   function handleChangeInputDuration(e) {
-    setShortMovie(e.target.checked);
+    setIsShortMovie(e.target.checked);
   }
 
   function handleSubmit(e) {
@@ -23,9 +23,8 @@ export default function SearchForm({ onSubmit }) {
     if (!isValid) {
       setIsValidForm(false);
     } else {
-      onSubmit(values.movie);
-      resetForm();
-      setShortMovie(true);
+      const dataSearch = { name: values.movie, isShortMovie: isShortMovie };
+      onSubmit(dataSearch);
     }
   }
 
@@ -52,7 +51,7 @@ export default function SearchForm({ onSubmit }) {
             type="checkbox"
             className="search__check-input"
             name="duration"
-            checked={shortMovie}
+            checked={isShortMovie}
             value="shortMovie"
             onChange={handleChangeInputDuration}
           />

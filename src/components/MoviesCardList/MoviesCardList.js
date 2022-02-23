@@ -2,13 +2,14 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-export default function MoviesCardList({ movies, isSavedMoviesPage }) {
+export default function MoviesCardList({ movies, isSavedMoviesPage, onSaveMovieClick }) {
   const widthUserDevice = window.innerWidth;
   const maxCards = widthUserDevice > 1023 ? 12 : widthUserDevice > 767 ? 8 : 5;
+  const loadCards = widthUserDevice > 1023 ? 3 : widthUserDevice > 767 ? 2 : 1;
   const [maxCardsAfterLoad, setMaxCardsAfterLoad] = React.useState(maxCards);
 
   function handleCardsLoaderClick() {
-    setMaxCardsAfterLoad(maxCardsAfterLoad + maxCards);
+    setMaxCardsAfterLoad(maxCardsAfterLoad + loadCards);
   }
 
   return (
@@ -35,13 +36,14 @@ export default function MoviesCardList({ movies, isSavedMoviesPage }) {
                   card={movie}
                   key={movies.indexOf(movie)}
                   isSavedMoviesPage={isSavedMoviesPage}
+                  onSaveMovieClick={onSaveMovieClick}
                 />
               </li>
             );
           }
         })}
       </ul>
-      {!isSavedMoviesPage && (
+      {(!isSavedMoviesPage && movies.length > maxCards) && (
         <button className="cards__loader link-hover" onClick={handleCardsLoaderClick}>
           Ещё
         </button>

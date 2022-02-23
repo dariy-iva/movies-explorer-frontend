@@ -3,7 +3,7 @@ import "./Header.css";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 
-export default function Header({ isLoggedIn }) {
+export default function Header({ isLoggedIn, isMainPage }) {
   const [isOpenMenu, setIsOpenMenu] = React.useState(false);
 
   function handleMenuOpen() {
@@ -15,7 +15,7 @@ export default function Header({ isLoggedIn }) {
   }
 
   return (
-    <header className={`header ${!isLoggedIn && "header_color"}`}>
+    <header className={`header ${isMainPage && "header_color"}`}>
       <Logo />
       <div
         className={`header__overlay ${isOpenMenu && "header__overlay_visible"}`}

@@ -6,13 +6,13 @@ import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
-export default function Register() {
-  const { values, handleChange, errors, isValid, resetForm } =
+export default function Register({ handleRegister }) {
+  const { values, handleChange, errors, isValid } =
     useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    resetForm();
+    handleRegister(values);
   }
 
   return (

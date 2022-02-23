@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-export default function Profile({ onUpdate }) {
+export default function Profile({ onUpdate, handleLogout }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -88,7 +88,7 @@ export default function Profile({ onUpdate }) {
             Редактировать
           </button>
         </form>
-        <Link className="profile__link-out link-hover" to="/" onClick={""}>
+        <Link className="profile__link-out link-hover" to="/" onClick={handleLogout}>
           Выйти из аккаунта
         </Link>
       </main>

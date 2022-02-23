@@ -6,19 +6,19 @@ import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import Logo from "../Logo/Logo";
 
-export default function Login() {
-  const { values, handleChange, errors, isValid, resetForm } =
-  useFormWithValidation();
+export default function Login({ handleLogin }) {
+  const { values, handleChange, errors, isValid } =
+    useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    resetForm();
+    handleLogin(values);
   }
 
   return (
     <>
       <main className="login">
-      <Logo />
+        <Logo />
         <FormSign
           name="login"
           title="Рады видеть!"

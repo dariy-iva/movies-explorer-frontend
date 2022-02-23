@@ -9,10 +9,10 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-export default function Main() {
+export default function Main({isLoggedIn}) {
   return (
     <>
-      <Header isLoggedIn={false} />
+      <Header isLoggedIn={isLoggedIn} isMainPage={true} />
       <main className="main">
         <Promo />
         <NavTab />
