@@ -32,6 +32,7 @@ export default function Register({ handleRegister }) {
             onChange={handleChange}
             config={inputConfig.name}
             error={errors.name || ""}
+            pattern="^[a-zA-Zа-яёА-ЯЁ\-\s]+$"
           />
           <InputFormSign
             value={values.email || ""}

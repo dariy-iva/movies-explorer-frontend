@@ -1,50 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import useFormWithValidation from "../../utils/FormValidator";
 import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 export default function Profile({ onUpdate, handleLogout }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormWithValidation();
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
 
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [isValidForm, setIsValidForm] = React.useState(false);
+  const [dataUser, setDataUser] = React.useState({ name: "", email: "" });
+  const [errors, setErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(false);
+
+  function handleChange(e) {
+    const { name, value, validationMessage } = e.target;
+    setDataUser({ ...dataUser, [name]: value });
+    setErrors({ ...errors, [name]: validationMessage });
+    setIsValid(e.target.closest("form").checkValidity());
+  }
 
   React.useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
+    setDataUser({
+      name: currentUser.name,
+      email: currentUser.email,
+    });
   }, [currentUser]);
 
   React.useEffect(() => {
     if (
-      ((values.name && values.name !== name) ||
-        (values.email && values.email !== email)) &&
-      isValid
+      dataUser.name !== currentUser.name ||
+      dataUser.email !== currentUser.email
     ) {
-      setIsValidForm(true);
+      setIsValid(true);
     } else {
-      setIsValidForm(false);
+      setIsValid(false);
     }
-  }, [isValid, values, name, email]);
+  }, [dataUser, currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdate(values);
-    resetForm();
+    onUpdate(dataUser);
   }
 
   return (
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
-        <h2 className="profile__title">{`Привет, ${name || ""}!`}</h2>
+        <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
         <form
           name="update-profile"
           className="profile__form"
@@ -60,7 +64,8 @@ export default function Profile({ onUpdate, handleLogout }) {
                 required
                 minLength={nameInput.minLength}
                 maxLength={nameInput.maxLength}
-                defaultValue={name}
+                pattern="^[a-zA-Zа-яёА-ЯЁ\-\s]+$"
+                value={dataUser.name}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.name || ""}</span>
@@ -74,7 +79,7 @@ export default function Profile({ onUpdate, handleLogout }) {
                 required
                 minLength={emailInput.minLength}
                 pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
-                defaultValue={email}
+                value={dataUser.email}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.email || ""}</span>
@@ -83,12 +88,16 @@ export default function Profile({ onUpdate, handleLogout }) {
           <button
             type="submit"
             className="profile__submit-button link-hover"
-            disabled={!isValidForm}
+            disabled={!isValid}
           >
             Редактировать
           </button>
         </form>
-        <Link className="profile__link-out link-hover" to="/" onClick={handleLogout}>
+        <Link
+          className="profile__link-out link-hover"
+          to="/"
+          onClick={handleLogout}
+        >
           Выйти из аккаунта
         </Link>
       </main>

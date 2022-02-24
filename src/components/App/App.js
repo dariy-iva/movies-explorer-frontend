@@ -36,8 +36,13 @@ export default function App() {
     }
   }, [loggedIn]);
 
-  function handleUpdateUser(data) {
-    setCurrentUser(data);
+  function handleUpdateUser(dataUser) {
+    mainApi
+      .setUserInfo(dataUser)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.log(err));
   }
 
   function filterMovies(moviesList, dataFilter) {

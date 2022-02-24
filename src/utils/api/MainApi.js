@@ -44,20 +44,20 @@ class MainApi {
   //   .then(this._verifyResolve);
   // }
 
-  // setUserInfo(data) {
-  //   return fetch(`${this._adress}/users/me`, {
-  //     method: "PATCH",
-  //     credentials: 'include',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       about: data.about,
-  //     }),
-  //   })
-  //   .then(this._verifyResolve);
-  // }
+  setUserInfo(data) {
+    return fetch(`${this._adress}/users/me`, {
+      method: "PATCH",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+      }),
+    })
+    .then(this._verifyResolve);
+  }
 
   // setUserAvatar(data) {
   //   return fetch(`${this._adress}/users/me/avatar`, {
