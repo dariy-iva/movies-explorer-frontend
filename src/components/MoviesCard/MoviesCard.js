@@ -1,8 +1,8 @@
 import React from "react";
 import "./MoviesCard.css";
 
-export default function MoviesCard({ card, isSavedMoviesPage, onSaveMovieClick }) {
-  const { nameRU, trailerLink, duration, owner, image } = card;
+export default function MoviesCard({ card, isSavedMoviesPage, onSaveMovie, onDeleteMovie }) {
+  const { nameRU, trailerLink, trailer, duration, owner, image } = card;
   const [isHover, setIsHover] = React.useState(false);
   const imageURL = `https://api.nomoreparties.co/${image.url}`;
   const durationHours = Math.floor(duration / 60);
@@ -27,7 +27,12 @@ export default function MoviesCard({ card, isSavedMoviesPage, onSaveMovieClick }
   }
 
   function handleSaveMovie() {
-    onSaveMovieClick(card);
+    onSaveMovie(card);
+  }
+
+  function handleDeleteMovie() {
+    console.log(card)
+    onDeleteMovie(card);
   }
 
   return (
@@ -36,8 +41,8 @@ export default function MoviesCard({ card, isSavedMoviesPage, onSaveMovieClick }
       onMouseOver={handleMouseOverCard}
       onMouseOut={handleMouseOutCard}
     >
-      <a href={trailerLink} className="card__trailer-link" target="blanck">
-        <img src={imageURL} alt={nameRU} className="card__img" />
+      <a href={isSavedMoviesPage ? trailer : trailerLink} className="card__trailer-link" target="blanck">
+        <img src={isSavedMoviesPage ? image : imageURL} alt={nameRU} className="card__img" />
       </a>
       <div className="card__info">
         <p className="card__name">{nameRU}</p>
@@ -45,7 +50,7 @@ export default function MoviesCard({ card, isSavedMoviesPage, onSaveMovieClick }
         <button
           type="button"
           className={`card__button ${buttonClassName}`}
-          onClick={!isSavedMoviesPage ? handleSaveMovie : ''}
+          onClick={isSavedMoviesPage ? handleDeleteMovie : handleSaveMovie}
         ></button>
       </div>
     </article>

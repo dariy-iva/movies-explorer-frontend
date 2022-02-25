@@ -32,6 +32,7 @@
   --color-text-gray: #a0a0a0;
   --color-invalid-input-red: #ff4062;
   background-color: var(--white);
+  position: relative;
 }
 
 .link-hover {

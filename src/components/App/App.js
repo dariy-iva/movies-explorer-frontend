@@ -14,7 +14,8 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import InfoTooltipPopup from "../InfoToolTipPopup/InfoToolTipPopup";
 import { moviesApi } from "../../utils/api/MoviesApi";
 import { mainApi } from "../../utils/api/MainApi";
-import * as Auth from "../../utils/api/Auth";
+import { authApi } from "../../utils/api/AuthApi";
+import Preloader from "../Preloader/Preloader";
 
 export default function App() {
   const history = useNavigate();
@@ -22,6 +23,9 @@ export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [isOpenPreloader, setIsOpenPreloader] = React.useState(false);
+  const [resMessage, setResMessage] = React.useState("");
+  const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);
 
   React.useEffect(() => {
     if (loggedIn === true) {
@@ -35,6 +39,23 @@ export default function App() {
       history("/movies");
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
+  React.useEffect(() => {
+    mainApi
+      .getMovies()
+      .then((data) => {
+        setSavedMovies(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  function handleCloseInfoPopup() {
+    setIsOpenInfoPopup(false);
+  }
 
   function handleUpdateUser(dataUser) {
     mainApi
@@ -64,6 +85,7 @@ export default function App() {
   }
 
   function handleSearchAllMovies(dataSearch) {
+    setIsOpenPreloader(true);
     moviesApi
       .getMovies()
       .then((movies) => {
@@ -72,7 +94,8 @@ export default function App() {
       .then((moviesFilter) => {
         setMovies(moviesFilter);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsOpenPreloader(false));
   }
 
   function handleSearchSavedMovies(dataSearch) {
@@ -96,8 +119,18 @@ export default function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleDeleteMovie(movie) {
+    mainApi
+      .deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+      })
+      .catch((err) => console.log(err));
+  }
+
   function handleTokenCheck() {
-    Auth.checkToken()
+    authApi
+      .checkToken()
       .then((dataUser) => {
         if (dataUser) {
           setCurrentUser(dataUser);
@@ -110,33 +143,42 @@ export default function App() {
   function handleRegister(dataUser) {
     const { name, email, password } = dataUser;
 
-    Auth.register(name, email, password)
+    authApi
+      .register(name, email, password)
       .then((res) => {
         if (res.statusCode !== 400) {
-          handleLogin({email, password});
+          handleLogin({ email, password });
         }
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
-        return console.log(err);
+        err.then((err) => setResMessage(err.message));
+        setIsOpenInfoPopup(true);
       });
   }
 
   function handleLogin(dataUser) {
     const { email, password } = dataUser;
 
-    Auth.login(email, password)
+    authApi
+      .login(email, password)
       .then((data) => {
         if (data.token) {
           handleTokenCheck();
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        err.then((err) => setResMessage(err.message));
+        setIsOpenInfoPopup(true);
+      });
   }
 
   function handleLogout() {
     setLoggedIn(false);
-    Auth.logout().catch((err) => console.log(err));
+    authApi.logout().catch((err) => {
+      err.then((err) => setResMessage(err.message));
+      setIsOpenInfoPopup(true);
+    });
   }
 
   return (
@@ -151,7 +193,8 @@ export default function App() {
                 <Movies
                   movies={movies}
                   onSubmit={handleSearchAllMovies}
-                  onSaveMovieClick={handleSaveMovie}
+                  onSaveMovie={handleSaveMovie}
+                  onDeleteMovie={handleDeleteMovie}
                 />
               </ProtectedRoute>
             }
@@ -161,8 +204,9 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <SavedMovies
-                  movies={movies}
+                  movies={savedMovies}
                   onSubmit={handleSearchSavedMovies}
+                  onDeleteMovie={handleDeleteMovie}
                 />
               </ProtectedRoute>
             }
@@ -185,7 +229,12 @@ export default function App() {
           <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-        <InfoTooltipPopup isOpen={false} />
+        <InfoTooltipPopup
+          isOpen={isOpenInfoPopup}
+          message={resMessage}
+          onClose={handleCloseInfoPopup}
+        />
+        <Preloader isVisible={isOpenPreloader} />
       </LoggedInContext.Provider>
     </CurrentUserContext.Provider>
   );

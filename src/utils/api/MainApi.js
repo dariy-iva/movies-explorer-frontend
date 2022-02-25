@@ -14,36 +14,6 @@ class MainApi {
     .then(this._verifyResolve);
   }
 
-  addMovie(data) {
-    return fetch(`${this._adress}/movies`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        country: data.country,
-        director: data.director,
-        duration: data.duration,
-        year: data.year,
-        description: data.description,
-        image: data.image,
-        trailerLink: data.trailerLink,
-        thumbnail: data.thumbnail,
-        movieId: data.movieId,
-        nameRU: data.nameRU,
-        nameEN: data.nameEN,
-      }),
-    }).then(this._verifyResolve);
-  }
-
-  // getPosts() {
-  //   return fetch(`${this._adress}/cards`, {
-  //     credentials: 'include',
-  //   })
-  //   .then(this._verifyResolve);
-  // }
-
   setUserInfo(data) {
     return fetch(`${this._adress}/users/me`, {
       method: "PATCH",
@@ -59,35 +29,43 @@ class MainApi {
     .then(this._verifyResolve);
   }
 
-  // setUserAvatar(data) {
-  //   return fetch(`${this._adress}/users/me/avatar`, {
-  //     method: "PATCH",
-  //     credentials: 'include',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       avatar: data.avatar,
-  //     }),
-  //   })
-  //   .then(this._verifyResolve);
-  // }
+  getMovies() {
+    return fetch(`${this._adress}/movies`, {
+      credentials: 'include',
+    })
+    .then(this._verifyResolve);
+  }
 
-  // deletePost(postId) {
-  //   return fetch(`${this._adress}/cards/${postId}`, {
-  //     method: "DELETE",
-  //     credentials: 'include',
-  //   })
-  //   .then(this._verifyResolve);
-  // }
+  addMovie(data) {
+    return fetch(`${this._adress}/movies`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country: data.country || " ",
+        director: data.director || " ",
+        duration: data.duration || 0,
+        year: data.year || " ",
+        description: data.description || " ",
+        image: `https://api.nomoreparties.co/${data.image.url}`,
+        trailer: data.trailerLink,
+        thumbnail: `https://api.nomoreparties.co/${data.image.url}`,
+        movieId: `${data.id}`,
+        nameRU: data.nameRU || " ",
+        nameEN: data.nameEN || " ",
+      }),
+    }).then(this._verifyResolve);
+  }
 
-  // changeLikePostStatus(postId, isLiked) {
-  //   return fetch(`${this._adress}/cards/${postId}/likes`, {
-  //     method: isLiked ? "DELETE" : "PUT",
-  //     credentials: 'include',
-  //   })
-  //   .then(this._verifyResolve);
-  // }
+  deleteMovie(movieId) {
+    return fetch(`${this._adress}/movies/${movieId}`, {
+      method: "DELETE",
+      credentials: 'include',
+    })
+    .then(this._verifyResolve);
+  }
 }
 
 const apiConfig = {

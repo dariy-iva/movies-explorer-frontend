@@ -2,7 +2,7 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-export default function MoviesCardList({ movies, isSavedMoviesPage, onSaveMovieClick }) {
+export default function MoviesCardList({ movies, isSavedMoviesPage, onSaveMovie, onDeleteMovie }) {
   const widthUserDevice = window.innerWidth;
   const maxCards = widthUserDevice > 1023 ? 12 : widthUserDevice > 767 ? 8 : 5;
   const loadCards = widthUserDevice > 1023 ? 3 : widthUserDevice > 767 ? 2 : 1;
@@ -23,6 +23,7 @@ export default function MoviesCardList({ movies, isSavedMoviesPage, onSaveMovieC
                   card={movie}
                   key={movies.indexOf(movie)}
                   isSavedMoviesPage={isSavedMoviesPage}
+                  onDeleteMovie={onDeleteMovie}
                 />
               </li>
             );
@@ -36,7 +37,8 @@ export default function MoviesCardList({ movies, isSavedMoviesPage, onSaveMovieC
                   card={movie}
                   key={movies.indexOf(movie)}
                   isSavedMoviesPage={isSavedMoviesPage}
-                  onSaveMovieClick={onSaveMovieClick}
+                  onSaveMovie={onSaveMovie}
+                  onDeleteMovie={onDeleteMovie}
                 />
               </li>
             );
