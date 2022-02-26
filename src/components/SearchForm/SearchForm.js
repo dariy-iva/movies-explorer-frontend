@@ -2,10 +2,10 @@ import React from "react";
 import "./SearchForm.css";
 import useFormWithValidation from "../../utils/FormValidator";
 
-export default function SearchForm({ onSubmit }) {
+export default function SearchForm({ onSubmit, keyWordSearch, isShortMovieSearch }) {
   const { values, handleChange, isValid } = useFormWithValidation();
 
-  const [isShortMovie, setIsShortMovie] = React.useState(true);
+  const [isShortMovie, setIsShortMovie] = React.useState(isShortMovieSearch || true);
   const [isValidForm, setIsValidForm] = React.useState(true);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ export default function SearchForm({ onSubmit }) {
     if (!isValid) {
       setIsValidForm(false);
     } else {
-      const dataSearch = { name: values.movie, isShortMovie: isShortMovie };
+      const dataSearch = { movie: values.movie, isShortMovie: isShortMovie };
       onSubmit(dataSearch);
     }
   }
@@ -38,7 +38,7 @@ export default function SearchForm({ onSubmit }) {
           name="movie"
           minLength="1"
           maxLength="20"
-          value={values.movie || ""}
+          value={values.movie || keyWordSearch || ""}
           onChange={handleChange}
         />
         <span

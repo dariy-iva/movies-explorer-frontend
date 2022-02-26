@@ -23,6 +23,8 @@ export default function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [keyWordSearch, setKeyWordSearch] = React.useState("");
+  const [isShortMovieSearch, setIsShortMovieSearch] = React.useState(true);
   const [isOpenPreloader, setIsOpenPreloader] = React.useState(false);
   const [resMessage, setResMessage] = React.useState("");
   const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);
@@ -39,6 +41,22 @@ export default function App() {
       history("/movies");
     }
   }, [loggedIn]);
+
+  React.useEffect(() => {
+    if (localStorage.movies) {
+      const moviesFilterJSON = JSON.parse(localStorage.movies);
+      setMovies(moviesFilterJSON);
+    }
+    if (localStorage.keyWordSearch) {
+      setKeyWordSearch(localStorage.keyWordSearch);
+    }
+    if (localStorage.isShortMovieSearch) {
+      const isShortMovieSearchJSON = JSON.parse(
+        localStorage.isShortMovieSearch
+      );
+      setIsShortMovieSearch(isShortMovieSearchJSON);
+    }
+  }, []);
 
   React.useEffect(() => {
     handleTokenCheck();
@@ -67,7 +85,7 @@ export default function App() {
   }
 
   function filterMovies(moviesList, dataFilter) {
-    const nameMovieFilter = dataFilter.name.toLowerCase();
+    const nameMovieFilter = dataFilter.movie.toLowerCase();
     const isShortMovieFilter = dataFilter.isShortMovie;
     return moviesList.filter((movie) => {
       if (isShortMovieFilter) {
@@ -84,7 +102,7 @@ export default function App() {
     });
   }
 
-  function handleSearchAllMovies(dataSearch) {
+  function handleSearchMovies(dataSearch) {
     setIsOpenPreloader(true);
     moviesApi
       .getMovies()
@@ -93,6 +111,12 @@ export default function App() {
       })
       .then((moviesFilter) => {
         setMovies(moviesFilter);
+        const moviesFilterJSON = JSON.stringify(moviesFilter);
+        localStorage.setItem("movies", moviesFilterJSON);
+        setKeyWordSearch(dataSearch.movie);
+        localStorage.setItem("keyWordSearch", dataSearch.movie);
+        setIsShortMovieSearch(dataSearch.isShortMovie);
+        localStorage.setItem("isShortMovieSearch", dataSearch.isShortMovie);
       })
       .catch((err) => console.log(err))
       .finally(() => setIsOpenPreloader(false));
@@ -108,6 +132,17 @@ export default function App() {
     //     setMovies(moviesFilter);
     //   })
     //   .catch((err) => console.log(err));
+  }
+
+  function toggleSavedMovie(dataMovie) {
+    const isSavedMovie = savedMovies.some((i) => i.movieId === dataMovie.id);
+    if (isSavedMovie) {
+      const savedMovie = savedMovies.find((i) => i.movieId === dataMovie.id)
+      handleDeleteMovie(savedMovie);
+    }
+    if (!isSavedMovie) {
+      handleSaveMovie(dataMovie)
+    }
   }
 
   function handleSaveMovie(dataMovie) {
@@ -175,10 +210,17 @@ export default function App() {
 
   function handleLogout() {
     setLoggedIn(false);
-    authApi.logout().catch((err) => {
-      err.then((err) => setResMessage(err.message));
-      setIsOpenInfoPopup(true);
-    });
+    authApi
+      .logout()
+      .then(() => {
+        localStorage.removeItem("movies");
+        localStorage.removeItem("keyWordSearch");
+        localStorage.removeItem("isShortMovieSearch");
+      })
+      .catch((err) => {
+        err.then((err) => setResMessage(err.message));
+        setIsOpenInfoPopup(true);
+      });
   }
 
   return (
@@ -192,9 +234,11 @@ export default function App() {
               <ProtectedRoute>
                 <Movies
                   movies={movies}
-                  onSubmit={handleSearchAllMovies}
-                  onSaveMovie={handleSaveMovie}
-                  onDeleteMovie={handleDeleteMovie}
+                  savedMovies={savedMovies}
+                  onSubmit={handleSearchMovies}
+                  onLikeButtonClick={toggleSavedMovie}
+                  keyWordSearch={keyWordSearch}
+                  isShortMovieSearch={isShortMovieSearch}
                 />
               </ProtectedRoute>
             }

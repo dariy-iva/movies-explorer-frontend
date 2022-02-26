@@ -9,11 +9,7 @@ class MoviesApi {
 
   getMovies() {
     return fetch(this._adress)
-    .then(this._verifyResolve)
-    .then(data => {
-      localStorage.setItem('movies', data);
-      return data;
-    });
+    .then(this._verifyResolve);
   }
 }
 

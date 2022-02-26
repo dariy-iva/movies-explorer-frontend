@@ -8,19 +8,25 @@ import Footer from "../Footer/Footer";
 export default function Movies({
   movies,
   onSubmit,
-  onSaveMovie,
-  onDeleteMovie,
+  onLikeButtonClick,
+  keyWordSearch,
+  isShortMovieSearch,
+  savedMovies
 }) {
   return (
     <>
       <Header isLoggedIn={true} />
       <main className="movies">
-        <SearchForm onSubmit={onSubmit} />
+        <SearchForm
+          onSubmit={onSubmit}
+          keyWordSearch={keyWordSearch}
+          isShortMovieSearch={isShortMovieSearch}
+        />
         <MoviesCardList
           movies={movies}
+          savedMovies={savedMovies}
           isSavedMoviesPage={false}
-          onSaveMovie={onSaveMovie}
-          onDeleteMovie={onDeleteMovie}
+          onLikeButtonClick={onLikeButtonClick}
         />
       </main>
       <Footer />
