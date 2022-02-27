@@ -9,10 +9,30 @@ export default function MoviesCardList({
   onDeleteMovie,
   onLikeButtonClick,
 }) {
-  const widthUserDevice = window.innerWidth;
-  const maxCards = widthUserDevice > 1023 ? 12 : widthUserDevice > 767 ? 8 : 5;
-  const loadCards = widthUserDevice > 1023 ? 3 : widthUserDevice > 767 ? 2 : 1;
-  const [maxCardsAfterLoad, setMaxCardsAfterLoad] = React.useState(maxCards);
+
+  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
+  const [maxCards, setMaxCards] = React.useState();
+  const [loadCards, setLoadCards] = React.useState();
+  const [maxCardsAfterLoad, setMaxCardsAfterLoad] = React.useState();
+
+  function resize() {
+    setTimeout(() => {
+      setWindowSize(window.innerWidth);
+    }, 1000);
+  }
+
+  React.useEffect(() => {
+    window.addEventListener("resize", resize);
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    setMaxCards(windowSize > 1023 ? 12 : windowSize > 767 ? 8 : 5);
+    setLoadCards(windowSize > 1023 ? 3 : windowSize > 767 ? 2 : 1);
+    setMaxCardsAfterLoad(maxCards);
+  }, [windowSize, maxCards]);
 
   function handleCardsLoaderClick() {
     setMaxCardsAfterLoad(maxCardsAfterLoad + loadCards);

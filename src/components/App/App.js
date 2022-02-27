@@ -15,6 +15,8 @@ import InfoTooltipPopup from "../InfoToolTipPopup/InfoToolTipPopup";
 import { moviesApi } from "../../utils/api/MoviesApi";
 import { mainApi } from "../../utils/api/MainApi";
 import { authApi } from "../../utils/api/AuthApi";
+import { showServerErrorText } from "../../utils/showServerErrorText";
+import filterMovies from "../../utils/filterMovies";
 import Preloader from "../Preloader/Preloader";
 
 export default function App() {
@@ -67,6 +69,8 @@ export default function App() {
       .getMovies()
       .then((data) => {
         setSavedMovies(data);
+        const savedMoviesJSON = JSON.stringify(data);
+        localStorage.setItem("savedMovies", savedMoviesJSON);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -81,25 +85,10 @@ export default function App() {
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch((err) => console.log(err));
-  }
-
-  function filterMovies(moviesList, dataFilter) {
-    const nameMovieFilter = dataFilter.movie.toLowerCase();
-    const isShortMovieFilter = dataFilter.isShortMovie;
-    return moviesList.filter((movie) => {
-      if (isShortMovieFilter) {
-        return (
-          movie.nameRU.toLowerCase().includes(nameMovieFilter) &&
-          movie.duration <= 40
-        );
-      } else {
-        return (
-          movie.nameRU.toLowerCase().includes(nameMovieFilter) &&
-          movie.duration > 40
-        );
-      }
-    });
+      .catch((err) => {
+        setResMessage(showServerErrorText(err));
+        setIsOpenInfoPopup(true);
+      });
   }
 
   function handleSearchMovies(dataSearch) {
@@ -110,12 +99,12 @@ export default function App() {
         return filterMovies(movies, dataSearch);
       })
       .then((moviesFilter) => {
+        setKeyWordSearch(dataSearch.movie);
+        setIsShortMovieSearch(dataSearch.isShortMovie);
         setMovies(moviesFilter);
         const moviesFilterJSON = JSON.stringify(moviesFilter);
         localStorage.setItem("movies", moviesFilterJSON);
-        setKeyWordSearch(dataSearch.movie);
         localStorage.setItem("keyWordSearch", dataSearch.movie);
-        setIsShortMovieSearch(dataSearch.isShortMovie);
         localStorage.setItem("isShortMovieSearch", dataSearch.isShortMovie);
       })
       .catch((err) => console.log(err))
@@ -123,25 +112,19 @@ export default function App() {
   }
 
   function handleSearchSavedMovies(dataSearch) {
-    // moviesApi
-    //   .getMovies()
-    //   .then((movies) => {
-    //     return filterMovies(movies, dataSearch);
-    //   })
-    //   .then((moviesFilter) => {
-    //     setMovies(moviesFilter);
-    //   })
-    //   .catch((err) => console.log(err));
+    const savedMoviesInLocalStorage = JSON.parse(localStorage.savedMovies);
+    const savedMoviesFilter = filterMovies(savedMoviesInLocalStorage, dataSearch);
+    setSavedMovies(savedMoviesFilter);
   }
 
-  function toggleSavedMovie(dataMovie) {
+  function toggleLikeMovie(dataMovie) {
     const isSavedMovie = savedMovies.some((i) => i.movieId === dataMovie.id);
     if (isSavedMovie) {
-      const savedMovie = savedMovies.find((i) => i.movieId === dataMovie.id)
+      const savedMovie = savedMovies.find((i) => i.movieId === dataMovie.id);
       handleDeleteMovie(savedMovie);
     }
     if (!isSavedMovie) {
-      handleSaveMovie(dataMovie)
+      handleSaveMovie(dataMovie);
     }
   }
 
@@ -172,7 +155,10 @@ export default function App() {
           setLoggedIn(true);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setResMessage(showServerErrorText(err));
+        setIsOpenInfoPopup(true);
+      });
   }
 
   function handleRegister(dataUser) {
@@ -187,7 +173,7 @@ export default function App() {
         console.log(res);
       })
       .catch((err) => {
-        err.then((err) => setResMessage(err.message));
+        setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
       });
   }
@@ -203,22 +189,25 @@ export default function App() {
         }
       })
       .catch((err) => {
-        err.then((err) => setResMessage(err.message));
+        console.log(err)
+        setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
       });
   }
 
   function handleLogout() {
-    setLoggedIn(false);
     authApi
       .logout()
       .then(() => {
+        setLoggedIn(false);
         localStorage.removeItem("movies");
+        localStorage.removeItem("savedMovies");
         localStorage.removeItem("keyWordSearch");
         localStorage.removeItem("isShortMovieSearch");
       })
       .catch((err) => {
-        err.then((err) => setResMessage(err.message));
+        console.log(err)
+        setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
       });
   }
@@ -236,7 +225,7 @@ export default function App() {
                   movies={movies}
                   savedMovies={savedMovies}
                   onSubmit={handleSearchMovies}
-                  onLikeButtonClick={toggleSavedMovie}
+                  onLikeButtonClick={toggleLikeMovie}
                   keyWordSearch={keyWordSearch}
                   isShortMovieSearch={isShortMovieSearch}
                 />

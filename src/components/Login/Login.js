@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import useFormWithValidation from "../../utils/FormValidator";
+import useFormValidator from "../../hooks/useFormValidator";
 import FormSign from "../FormSign/FormSign";
 import InputFormSign from "../FormSign/InputFormSign/InputFormSign";
 import { inputConfig } from "../../utils/constants/inputsConfig";
@@ -8,7 +8,7 @@ import Logo from "../Logo/Logo";
 
 export default function Login({ handleLogin }) {
   const { values, handleChange, errors, isValid } =
-    useFormWithValidation();
+  useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();

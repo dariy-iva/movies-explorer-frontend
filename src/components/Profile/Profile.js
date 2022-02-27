@@ -4,44 +4,35 @@ import "./Profile.css";
 import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import useFormValidator from "../../hooks/useFormValidator";
 
 export default function Profile({ onUpdate, handleLogout }) {
   const currentUser = React.useContext(CurrentUserContext);
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
-
-  const [dataUser, setDataUser] = React.useState({ name: "", email: "" });
-  const [errors, setErrors] = React.useState({});
-  const [isValid, setIsValid] = React.useState(false);
-
-  function handleChange(e) {
-    const { name, value, validationMessage } = e.target;
-    setDataUser({ ...dataUser, [name]: value });
-    setErrors({ ...errors, [name]: validationMessage });
-    setIsValid(e.target.closest("form").checkValidity());
-  }
-
-  React.useEffect(() => {
-    setDataUser({
+  const { values, handleChange, errors, isValid } =
+    useFormValidator({
       name: currentUser.name,
       email: currentUser.email,
     });
-  }, [currentUser]);
+
+  const [isValidProfile, setIsValidProfile] = React.useState(false);
 
   React.useEffect(() => {
     if (
-      dataUser.name !== currentUser.name ||
-      dataUser.email !== currentUser.email
+      (values.name !== currentUser.name ||
+        values.email !== currentUser.email) &&
+      isValid
     ) {
-      setIsValid(true);
+      setIsValidProfile(true);
     } else {
-      setIsValid(false);
+      setIsValidProfile(false);
     }
-  }, [dataUser, currentUser]);
+  }, [values, currentUser, isValid]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdate(dataUser);
+    onUpdate(values);
   }
 
   return (
@@ -65,7 +56,7 @@ export default function Profile({ onUpdate, handleLogout }) {
                 minLength={nameInput.minLength}
                 maxLength={nameInput.maxLength}
                 pattern="^[a-zA-Zа-яёА-ЯЁ\-\s]+$"
-                value={dataUser.name}
+                value={values.name || ""}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.name || ""}</span>
@@ -79,7 +70,7 @@ export default function Profile({ onUpdate, handleLogout }) {
                 required
                 minLength={emailInput.minLength}
                 pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
-                value={dataUser.email}
+                value={values.email || ""}
                 onChange={handleChange}
               />
               <span className="profile__error">{errors.email || ""}</span>
@@ -88,7 +79,7 @@ export default function Profile({ onUpdate, handleLogout }) {
           <button
             type="submit"
             className="profile__submit-button link-hover"
-            disabled={!isValid}
+            disabled={!isValidProfile}
           >
             Редактировать
           </button>

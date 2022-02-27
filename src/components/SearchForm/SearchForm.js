@@ -1,18 +1,26 @@
 import React from "react";
 import "./SearchForm.css";
-import useFormWithValidation from "../../utils/FormValidator";
+import useFormValidator from "../../hooks/useFormValidator";
 
-export default function SearchForm({ onSubmit, keyWordSearch, isShortMovieSearch }) {
-  const { values, handleChange, isValid } = useFormWithValidation();
+export default function SearchForm({
+  onSubmit,
+  keyWordSearch,
+  isShortMovieSearch,
+}) {
+  const { values, handleChange, isValid } = useFormValidator({
+    movie: keyWordSearch,
+  });
 
-  const [isShortMovie, setIsShortMovie] = React.useState(isShortMovieSearch || true);
+  const [isShortMovie, setIsShortMovie] = React.useState(
+    isShortMovieSearch || true
+  );
   const [isValidForm, setIsValidForm] = React.useState(true);
 
   React.useEffect(() => {
     if (isValid) {
       setIsValidForm(true);
     }
-  }, [isValid]);
+  }, [isValid, values]);
 
   function handleChangeInputDuration(e) {
     setIsShortMovie(e.target.checked);
@@ -20,7 +28,7 @@ export default function SearchForm({ onSubmit, keyWordSearch, isShortMovieSearch
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!isValid) {
+    if (!isValid && !values.movie) {
       setIsValidForm(false);
     } else {
       const dataSearch = { movie: values.movie, isShortMovie: isShortMovie };
@@ -38,7 +46,7 @@ export default function SearchForm({ onSubmit, keyWordSearch, isShortMovieSearch
           name="movie"
           minLength="1"
           maxLength="20"
-          value={values.movie || keyWordSearch || ""}
+          value={values.movie || ""}
           onChange={handleChange}
         />
         <span

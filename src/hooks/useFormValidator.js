@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function useFormWithValidation() {
-  const [values, setValues] = React.useState({});
+export default function useFormValidator(defaultValues) {
+  const [values, setValues] = React.useState(defaultValues);
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
 

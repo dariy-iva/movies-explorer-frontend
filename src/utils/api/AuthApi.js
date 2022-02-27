@@ -4,9 +4,7 @@ class AuthApi {
   }
 
   _verifyResolve(res) {
-    return res.ok 
-      ? res.json() 
-      : Promise.reject(res.json());
+    return res.ok ? res.json() : Promise.reject(res.status);
   }
 
   register(name, email, password) {
@@ -17,51 +15,38 @@ class AuthApi {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, email, password }),
-    })
-      .then(this._verifyResolve)
-  };
-  
+    }).then(this._verifyResolve);
+  }
+
   login(email, password) {
     return fetch(`${this._adress}/signin`, {
-      method: 'POST',
-      credentials: 'include',
+      method: "POST",
+      credentials: "include",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({email, password})
-    })
-    .then(this._verifyResolve)
-  };
-  
+      body: JSON.stringify({ email, password }),
+    }).then(this._verifyResolve);
+  }
+
   logout() {
     return fetch(`${this._adress}/signout`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(this._verifyResolve)
+      method: "POST",
+      credentials: "include",
+    }).then(this._verifyResolve);
   }
-  
+
   checkToken() {
     return fetch(`${this._adress}/users/me`, {
-      method: 'GET',
-      credentials: 'include',
+      method: "GET",
+      credentials: "include",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(this._verifyResolve)
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }).then(this._verifyResolve);
   }
-
-  returnResMessage() {
-    return this.res;
-  }
-
 }
 
 const apiConfig = {
