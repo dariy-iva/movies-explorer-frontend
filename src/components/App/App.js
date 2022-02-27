@@ -29,7 +29,8 @@ export default function App() {
   const [isShortMovieSearch, setIsShortMovieSearch] = React.useState(true);
   const [isOpenPreloader, setIsOpenPreloader] = React.useState(false);
   const [resMessage, setResMessage] = React.useState("");
-  const [isSuccessSearch, setIsSuccessSearch] = React.useState(true);
+  const [isSuccessSearchMovie, setIsSuccessSearchMovie] = React.useState(true);
+  const [isSuccessSearchSavedMovie, setIsSuccessSearchSavedMovie] = React.useState(true);
   const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);
 
   React.useEffect(() => {
@@ -110,9 +111,9 @@ export default function App() {
         localStorage.setItem("isShortMovieSearch", dataSearch.isShortMovie);
 
         if (moviesFilter.length === 0) {
-          setIsSuccessSearch(false);
+          setIsSuccessSearchMovie(false);
         } else {
-          setIsSuccessSearch(true);
+          setIsSuccessSearchMovie(true);
         }
       })
       .catch((err) => console.log(err))
@@ -128,9 +129,9 @@ export default function App() {
     setSavedMovies(savedMoviesFilter);
 
     if (savedMoviesFilter.length === 0) {
-      setIsSuccessSearch(false);
+      setIsSuccessSearchSavedMovie(false);
     } else {
-      setIsSuccessSearch(true);
+      setIsSuccessSearchSavedMovie(true);
     }
   }
 
@@ -249,7 +250,7 @@ export default function App() {
                   onLikeButtonClick={toggleLikeMovie}
                   keyWordSearch={keyWordSearch}
                   isShortMovieSearch={isShortMovieSearch}
-                  isSuccessSearch={isSuccessSearch}
+                  isSuccessSearch={isSuccessSearchMovie}
                 />
               </ProtectedRoute>
             }
@@ -262,7 +263,7 @@ export default function App() {
                   movies={savedMovies}
                   onSubmit={handleSearchSavedMovies}
                   onDeleteMovie={handleDeleteMovie}
-                  isSuccessSearch={isSuccessSearch}
+                  isSuccessSearch={isSuccessSearchSavedMovie}
                 />
               </ProtectedRoute>
             }
