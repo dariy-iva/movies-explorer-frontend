@@ -16,6 +16,18 @@
   margin: 0;
 }
 
+.cards__text {
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.cards__info {
+  margin: 0;
+  text-align: center;
+}
+
 .cards__loader {
   display: block;
   width: 320px;
@@ -25,10 +37,6 @@
   border: 1px solid var(--color-bcg-dark-gray);
   border-radius: 6px;
   cursor: pointer;
-  font-size: 12px;
-  line-height: 1.25;
-  font-weight: 500;
-  color: var(--black);
 }
 
 @media (max-width: 1023px) {

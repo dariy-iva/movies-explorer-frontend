@@ -11,7 +11,8 @@ export default function Movies({
   onLikeButtonClick,
   keyWordSearch,
   isShortMovieSearch,
-  savedMovies
+  savedMovies,
+  isSuccessSearch
 }) {
   return (
     <>
@@ -27,6 +28,7 @@ export default function Movies({
           savedMovies={savedMovies}
           isSavedMoviesPage={false}
           onLikeButtonClick={onLikeButtonClick}
+          isSuccessSearch={isSuccessSearch}
         />
       </main>
       <Footer />

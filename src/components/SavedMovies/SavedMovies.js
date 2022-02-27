@@ -5,7 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-export default function SavedMovies({ movies, onSubmit, onDeleteMovie }) {
+export default function SavedMovies({ movies, onSubmit, onDeleteMovie, isSuccessSearch }) {
   return (
     <>
       <Header isLoggedIn={true} />
@@ -15,6 +15,7 @@ export default function SavedMovies({ movies, onSubmit, onDeleteMovie }) {
           movies={movies}
           isSavedMoviesPage={true}
           onDeleteMovie={onDeleteMovie}
+          isSuccessSearch={isSuccessSearch}
         />
       </main>
       <Footer />

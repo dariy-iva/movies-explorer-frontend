@@ -29,6 +29,7 @@ export default function App() {
   const [isShortMovieSearch, setIsShortMovieSearch] = React.useState(true);
   const [isOpenPreloader, setIsOpenPreloader] = React.useState(false);
   const [resMessage, setResMessage] = React.useState("");
+  const [isSuccessSearch, setIsSuccessSearch] = React.useState(true);
   const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);
 
   React.useEffect(() => {
@@ -102,10 +103,17 @@ export default function App() {
         setKeyWordSearch(dataSearch.movie);
         setIsShortMovieSearch(dataSearch.isShortMovie);
         setMovies(moviesFilter);
+
         const moviesFilterJSON = JSON.stringify(moviesFilter);
         localStorage.setItem("movies", moviesFilterJSON);
         localStorage.setItem("keyWordSearch", dataSearch.movie);
         localStorage.setItem("isShortMovieSearch", dataSearch.isShortMovie);
+
+        if (moviesFilter.length === 0) {
+          setIsSuccessSearch(false);
+        } else {
+          setIsSuccessSearch(true);
+        }
       })
       .catch((err) => console.log(err))
       .finally(() => setIsOpenPreloader(false));
@@ -113,8 +121,17 @@ export default function App() {
 
   function handleSearchSavedMovies(dataSearch) {
     const savedMoviesInLocalStorage = JSON.parse(localStorage.savedMovies);
-    const savedMoviesFilter = filterMovies(savedMoviesInLocalStorage, dataSearch);
+    const savedMoviesFilter = filterMovies(
+      savedMoviesInLocalStorage,
+      dataSearch
+    );
     setSavedMovies(savedMoviesFilter);
+
+    if (savedMoviesFilter.length === 0) {
+      setIsSuccessSearch(false);
+    } else {
+      setIsSuccessSearch(true);
+    }
   }
 
   function toggleLikeMovie(dataMovie) {
@@ -164,6 +181,7 @@ export default function App() {
   function handleRegister(dataUser) {
     const { name, email, password } = dataUser;
 
+    setIsOpenPreloader(true);
     authApi
       .register(name, email, password)
       .then((res) => {
@@ -175,7 +193,8 @@ export default function App() {
       .catch((err) => {
         setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
-      });
+      })
+      .finally(() => setIsOpenPreloader(false));
   }
 
   function handleLogin(dataUser) {
@@ -189,7 +208,7 @@ export default function App() {
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
       });
@@ -198,15 +217,17 @@ export default function App() {
   function handleLogout() {
     authApi
       .logout()
-      .then(() => {
+      .then((res) => {
         setLoggedIn(false);
         localStorage.removeItem("movies");
         localStorage.removeItem("savedMovies");
         localStorage.removeItem("keyWordSearch");
         localStorage.removeItem("isShortMovieSearch");
+        setResMessage(res.message);
+        setIsOpenInfoPopup(true);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         setResMessage(showServerErrorText(err));
         setIsOpenInfoPopup(true);
       });
@@ -228,6 +249,7 @@ export default function App() {
                   onLikeButtonClick={toggleLikeMovie}
                   keyWordSearch={keyWordSearch}
                   isShortMovieSearch={isShortMovieSearch}
+                  isSuccessSearch={isSuccessSearch}
                 />
               </ProtectedRoute>
             }
@@ -240,6 +262,7 @@ export default function App() {
                   movies={savedMovies}
                   onSubmit={handleSearchSavedMovies}
                   onDeleteMovie={handleDeleteMovie}
+                  isSuccessSearch={isSuccessSearch}
                 />
               </ProtectedRoute>
             }

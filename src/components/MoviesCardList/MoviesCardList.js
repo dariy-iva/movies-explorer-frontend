@@ -8,6 +8,7 @@ export default function MoviesCardList({
   savedMovies,
   onDeleteMovie,
   onLikeButtonClick,
+  isSuccessSearch
 }) {
 
   const [windowSize, setWindowSize] = React.useState(window.innerWidth);
@@ -71,9 +72,12 @@ export default function MoviesCardList({
           }
         })}
       </ul>
+      {!isSuccessSearch && (
+        <p className="cards__text cards__info">Ничего не найдено</p>
+      )}
       {!isSavedMoviesPage && movies.length > maxCards && (
         <button
-          className="cards__loader link-hover"
+          className="cards__text cards__loader link-hover"
           onClick={handleCardsLoaderClick}
         >
           Ещё
