@@ -75,7 +75,7 @@ export default function App() {
           setLoggedIn(true);
         }
       })
-      .catch((err) => openInfoPopupWithError(err));
+      .catch((err) => console.log(err));
   }
 
   function handleRegister(dataUser) {
@@ -108,6 +108,7 @@ export default function App() {
     authApi
       .logout()
       .then((res) => {
+        console.log(res)
         setLoggedIn(false);
         localStorage.clear();
         setResMessage(res.message);
@@ -191,7 +192,7 @@ export default function App() {
           setCurrentUser(data);
         })
         .catch((err) => openInfoPopupWithError(err));
-        
+
       history("/movies");
     }
   }, [loggedIn]);
@@ -213,15 +214,17 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    mainApi
-      .getMovies()
-      .then((data) => {
-        setSavedMovies(data);
-        const savedMoviesJSON = JSON.stringify(data);
-        localStorage.setItem("savedMovies", savedMoviesJSON);
-      })
-      .catch((err) => openInfoPopupWithError(err));
-  }, []);
+    if (loggedIn === true) {
+      mainApi
+        .getMovies()
+        .then((data) => {
+          setSavedMovies(data);
+          const savedMoviesJSON = JSON.stringify(data);
+          localStorage.setItem("savedMovies", savedMoviesJSON);
+        })
+        .catch((err) => openInfoPopupWithError(err));
+    }
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
