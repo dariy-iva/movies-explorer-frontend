@@ -16,6 +16,7 @@ import { moviesApi } from "../../utils/api/MoviesApi";
 import { mainApi } from "../../utils/api/MainApi";
 import { authApi } from "../../utils/api/AuthApi";
 import { showServerErrorText } from "../../utils/showServerErrorText";
+import { successFormSubmitText } from "../../utils/constants/resMessageText";
 import filterMovies from "../../utils/filterMovies";
 import Preloader from "../Preloader/Preloader";
 
@@ -105,16 +106,9 @@ export default function App() {
   }
 
   function handleLogout() {
-    authApi
-      .logout()
-      .then((res) => {
-        console.log(res)
-        setLoggedIn(false);
-        localStorage.clear();
-        setResMessage(res.message);
-        setIsOpenInfoPopup(true);
-      })
-      .catch((err) => openInfoPopupWithError(err));
+    setLoggedIn(false);
+    localStorage.clear();
+    authApi.logout().catch((err) => console.log(err));
   }
 
   function handleUpdateUser(dataUser) {
@@ -122,6 +116,8 @@ export default function App() {
       .setUserInfo(dataUser)
       .then((data) => {
         setCurrentUser(data);
+        setResMessage(successFormSubmitText.update);
+        setIsOpenInfoPopup(true);
       })
       .catch((err) => openInfoPopupWithError(err));
   }

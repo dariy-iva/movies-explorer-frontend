@@ -1,9 +1,4 @@
-export const errorsFormSubmitText = {
-  conflict: "Пользователь с таким email уже существует",
-  unauthorized: 'Некорректно введены почта или пароль',
-  validation: 'Переданы некорректные данные',
-  default: 'При отправке запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Попробуйте повторить запрос позже.',
-};
+import { errorsFormSubmitText } from "./constants/resMessageText";
 
 export function showServerErrorText(errorStatus) {
   let errText;
@@ -11,10 +6,10 @@ export function showServerErrorText(errorStatus) {
     case 409:
       errText = errorsFormSubmitText.conflict;
       break;
-      case 401:
+    case 401:
       errText = errorsFormSubmitText.unauthorized;
       break;
-      case 400:
+    case 400:
       errText = errorsFormSubmitText.validation;
       break;
     default:
