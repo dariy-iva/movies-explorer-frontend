@@ -5,7 +5,12 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-export default function SavedMovies({ movies, onSubmit, onDeleteMovie, isSuccessSearch }) {
+export default function SavedMovies({
+  movies,
+  onSubmit,
+  onDeleteMovie,
+  isSuccessSearch,
+}) {
   return (
     <>
       <Header isLoggedIn={true} />

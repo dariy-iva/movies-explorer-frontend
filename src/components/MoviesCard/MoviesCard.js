@@ -1,29 +1,24 @@
 import React from "react";
 import "./MoviesCard.css";
+import setDurationInString from "../../utils/setDurationInString"
 
-export default function MoviesCard({
-  movie,
-  isSavedMoviesPage,
-  savedMovies,
-  onLikeButtonClick,
-  onDeleteMovie,
-}) {
+export default function MoviesCard(props) {
+  const {
+    movie,
+    isSavedMoviesPage,
+    isSavedMovie,
+    onLikeButtonClick,
+    onDeleteMovie,
+  } = props;
   const { nameRU, trailerLink, trailer, duration, image } = movie;
   const [isHover, setIsHover] = React.useState(false);
   const imageURL = `https://api.nomoreparties.co/${image.url}`;
-  const durationHours = Math.floor(duration / 60);
-  const durationMinutes = duration - durationHours * 60;
-  const durationString =
-    duration < 60
-      ? `${duration}м`
-      : `${durationHours}ч ${durationMinutes > 0 ? durationMinutes + "м" : ""}`;
+  const durationString = setDurationInString(duration);
 
-  const isSaveMovie = isSavedMoviesPage
-    ? true
-    : savedMovies.some((i) => i.movieId === movie.id);
+  const isSavedMovieStatus = isSavedMoviesPage ? true : isSavedMovie(movie);
 
   const buttonClassName = !isSavedMoviesPage
-    ? isSaveMovie
+    ? isSavedMovieStatus
       ? "card__button_type_like-active"
       : "card__button_type_like-disactive"
     : isHover && "card__button_type_delete";
@@ -41,7 +36,6 @@ export default function MoviesCard({
   }
 
   function handleDeleteMovie() {
-    console.log(movie);
     onDeleteMovie(movie);
   }
 

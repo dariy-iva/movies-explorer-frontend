@@ -2,17 +2,16 @@ import React from "react";
 import "./SearchForm.css";
 import useFormValidator from "../../hooks/useFormValidator";
 
-export default function SearchForm({
-  onSubmit,
-  keyWordSearch,
-  isShortMovieSearch,
-}) {
+export default function SearchForm(props) {
+  const { onSubmit, keyWordSearch, isShortMovieSearch } = props;
   const { values, handleChange, isValid } = useFormValidator({
     movie: keyWordSearch,
   });
 
+  const defaultShotMovieChecked =
+    isShortMovieSearch !== undefined ? isShortMovieSearch : true;
   const [isShortMovie, setIsShortMovie] = React.useState(
-    isShortMovieSearch || true
+    defaultShotMovieChecked
   );
   const [isValidForm, setIsValidForm] = React.useState(true);
 
@@ -20,7 +19,7 @@ export default function SearchForm({
     if (isValid) {
       setIsValidForm(true);
     }
-  }, [isValid, values]);
+  }, [isValid]);
 
   function handleChangeInputDuration(e) {
     setIsShortMovie(e.target.checked);

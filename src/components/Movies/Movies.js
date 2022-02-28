@@ -11,7 +11,7 @@ export default function Movies({
   onLikeButtonClick,
   keyWordSearch,
   isShortMovieSearch,
-  savedMovies,
+  isSavedMovie,
   isSuccessSearch
 }) {
   return (
@@ -25,7 +25,7 @@ export default function Movies({
         />
         <MoviesCardList
           movies={movies}
-          savedMovies={savedMovies}
+          isSavedMovie={isSavedMovie}
           isSavedMoviesPage={false}
           onLikeButtonClick={onLikeButtonClick}
           isSuccessSearch={isSuccessSearch}

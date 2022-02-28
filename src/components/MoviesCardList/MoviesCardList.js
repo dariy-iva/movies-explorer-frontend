@@ -1,33 +1,22 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import useWindowSize from "../../hooks/useWindowSize";
 
-export default function MoviesCardList({
-  movies,
-  isSavedMoviesPage,
-  savedMovies,
-  onDeleteMovie,
-  onLikeButtonClick,
-  isSuccessSearch
-}) {
+export default function MoviesCardList(props) {
+  const {
+    movies,
+    isSavedMoviesPage,
+    isSavedMovie,
+    onDeleteMovie,
+    onLikeButtonClick,
+    isSuccessSearch,
+  } = props;
 
-  const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-  const [maxCards, setMaxCards] = React.useState();
-  const [loadCards, setLoadCards] = React.useState();
-  const [maxCardsAfterLoad, setMaxCardsAfterLoad] = React.useState();
-
-  function resize() {
-    setTimeout(() => {
-      setWindowSize(window.innerWidth);
-    }, 1000);
-  }
-
-  React.useEffect(() => {
-    window.addEventListener("resize", resize);
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
+  const windowSize = useWindowSize();
+  const [maxCards, setMaxCards] = React.useState(0);
+  const [loadCards, setLoadCards] = React.useState(0);
+  const [maxCardsAfterLoad, setMaxCardsAfterLoad] = React.useState(0);
 
   React.useEffect(() => {
     setMaxCards(windowSize > 1023 ? 12 : windowSize > 767 ? 8 : 5);
@@ -45,10 +34,10 @@ export default function MoviesCardList({
         {movies.map((movie) => {
           if (isSavedMoviesPage) {
             return (
-              <li key={movies.indexOf(movie)}>
+              <li key={movie.movieId}>
                 <MoviesCard
                   movie={movie}
-                  key={movies.indexOf(movie)}
+                  key={movie.movieId}
                   isSavedMoviesPage={isSavedMoviesPage}
                   onDeleteMovie={onDeleteMovie}
                 />
@@ -59,17 +48,17 @@ export default function MoviesCardList({
             movies.indexOf(movie) < maxCardsAfterLoad
           ) {
             return (
-              <li key={movies.indexOf(movie)}>
+              <li key={movie.id}>
                 <MoviesCard
                   movie={movie}
-                  key={movies.indexOf(movie)}
+                  key={movie.id}
                   isSavedMoviesPage={isSavedMoviesPage}
-                  savedMovies={savedMovies}
+                  isSavedMovie={isSavedMovie}
                   onLikeButtonClick={onLikeButtonClick}
                 />
               </li>
             );
-          }
+          } else {return null}
         })}
       </ul>
       {!isSuccessSearch && (
