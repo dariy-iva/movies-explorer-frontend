@@ -78,7 +78,8 @@
   color: var(--color-invalid-input-red);
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 12px;
+  text-align: end;
 }
 
 .profile__submit-button {

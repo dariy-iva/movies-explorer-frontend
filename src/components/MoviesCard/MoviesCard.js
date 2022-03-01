@@ -1,18 +1,27 @@
 import React from "react";
 import "./MoviesCard.css";
-import imageURL from "../../images/card__img.webp";
+import setDurationInString from "../../utils/setDurationInString"
 
-export default function MoviesCard({ card, isSavedMoviesPage }) {
-  const { nameRU, trailerLink, duration, owner } = card;
+export default function MoviesCard(props) {
+  const {
+    movie,
+    isSavedMoviesPage,
+    isSavedMovie,
+    onLikeButtonClick,
+    onDeleteMovie,
+  } = props;
+  const { nameRU, trailerLink, trailer, duration, image } = movie;
   const [isHover, setIsHover] = React.useState(false);
+  const imageURL = `https://api.nomoreparties.co/${image.url}`;
+  const durationString = setDurationInString(duration);
 
-  const buttonClassName = isSavedMoviesPage
-    ? isHover && "card__button_type_delete"
-    : owner
-    ? "card__button_type_like-active"
-    : "card__button_type_like-disactive";
+  const isSavedMovieStatus = isSavedMoviesPage ? true : isSavedMovie(movie);
 
-  function handleLikeClick() {}
+  const buttonClassName = !isSavedMoviesPage
+    ? isSavedMovieStatus
+      ? "card__button_type_like-active"
+      : "card__button_type_like-disactive"
+    : isHover && "card__button_type_delete";
 
   function handleMouseOverCard() {
     setIsHover(true);
@@ -22,6 +31,14 @@ export default function MoviesCard({ card, isSavedMoviesPage }) {
     setIsHover(false);
   }
 
+  function handleToggleLikeMovie() {
+    onLikeButtonClick(movie);
+  }
+
+  function handleDeleteMovie() {
+    onDeleteMovie(movie);
+  }
+
   return (
     <article
       className="card"
@@ -29,21 +46,26 @@ export default function MoviesCard({ card, isSavedMoviesPage }) {
       onMouseOut={handleMouseOutCard}
     >
       <a
-        href={trailerLink}
+        href={isSavedMoviesPage ? trailer : trailerLink}
         className="card__trailer-link"
         target="blanck"
       >
-        <img src={imageURL} alt={nameRU} className="card__img" />
+        <img
+          src={isSavedMoviesPage ? image : imageURL}
+          alt={nameRU}
+          className="card__img"
+        />
       </a>
       <div className="card__info">
         <p className="card__name">{nameRU}</p>
-        <p className="card__duration">{duration}</p>
+        <p className="card__duration">{durationString}</p>
         <button
           type="button"
           className={`card__button ${buttonClassName}`}
-          onClick={handleLikeClick}
-        >
-        </button>
+          onClick={
+            isSavedMoviesPage ? handleDeleteMovie : handleToggleLikeMovie
+          }
+        ></button>
       </div>
     </article>
   );

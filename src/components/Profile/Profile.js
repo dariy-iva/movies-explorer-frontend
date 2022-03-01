@@ -4,37 +4,42 @@ import "./Profile.css";
 import Header from "../Header/Header";
 import { inputConfig } from "../../utils/constants/inputsConfig";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import useFormValidator from "../../hooks/useFormValidator";
 
-export default function Profile() {
+export default function Profile({ onUpdate, handleLogout }) {
   const currentUser = React.useContext(CurrentUserContext);
   const nameInput = inputConfig.name;
   const emailInput = inputConfig.email;
+  const { values, handleChange, errors, isValid } =
+    useFormValidator({
+      name: currentUser.name,
+      email: currentUser.email,
+    });
 
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [isValidProfile, setIsValidProfile] = React.useState(false);
 
   React.useEffect(() => {
-    setName(currentUser.name || "");
-    setEmail(currentUser.email || "");
-  }, [currentUser]);
-
-  function handleChangeInputName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeInputEmail(e) {
-    setEmail(e.target.value);
-  }
+    if (
+      (values.name !== currentUser.name ||
+        values.email !== currentUser.email) &&
+      isValid
+    ) {
+      setIsValidProfile(true);
+    } else {
+      setIsValidProfile(false);
+    }
+  }, [values, currentUser, isValid]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    onUpdate(values);
   }
 
   return (
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
-        <h2 className="profile__title">{`Привет, ${name}!`}</h2>
+        <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
         <form
           name="update-profile"
           className="profile__form"
@@ -50,10 +55,11 @@ export default function Profile() {
                 required
                 minLength={nameInput.minLength}
                 maxLength={nameInput.maxLength}
-                value={name}
-                onChange={handleChangeInputName}
+                pattern="^[a-zA-Zа-яёА-ЯЁ\-\s]+$"
+                value={values.name || ""}
+                onChange={handleChange}
               />
-              <span className="profile__error"></span>
+              <span className="profile__error">{errors.name || ""}</span>
             </label>
             <label className="profile__field">
               {emailInput.label}
@@ -63,21 +69,26 @@ export default function Profile() {
                 name={emailInput.name}
                 required
                 minLength={emailInput.minLength}
-                value={email}
-                onChange={handleChangeInputEmail}
+                pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
+                value={values.email || ""}
+                onChange={handleChange}
               />
-              <span className="profile__error"></span>
+              <span className="profile__error">{errors.email || ""}</span>
             </label>
           </fieldset>
           <button
             type="submit"
             className="profile__submit-button link-hover"
-            disabled={false}
+            disabled={!isValidProfile}
           >
             Редактировать
           </button>
         </form>
-        <Link className="profile__link-out link-hover" to="/" onClick={""}>
+        <Link
+          className="profile__link-out link-hover"
+          to="/"
+          onClick={handleLogout}
+        >
           Выйти из аккаунта
         </Link>
       </main>

@@ -12,7 +12,7 @@
   border-radius: 5px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.4s, opacity 0.4s;
+  transition: visibility .4s, opacity .4s;
 }
 
 .popup_opened {

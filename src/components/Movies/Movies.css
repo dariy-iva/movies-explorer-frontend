@@ -2,6 +2,7 @@
   padding: 98px 70px 160px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 @media (max-width: 1023px) {

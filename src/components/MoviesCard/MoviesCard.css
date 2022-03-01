@@ -1,5 +1,5 @@
 .card {
-	width: 100%;
+	width: 364px;
 	margin: 0;
 	border-radius: 6px;
 	background-color: var(--white);
@@ -50,7 +50,7 @@
 	line-height: 1.23;
 	font-weight: 500;
 	color: var(--black);
-	width: 100%;
+	max-width: 290px;
 	text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -100,6 +100,9 @@
 }
 
 @media (max-width: 1023px) {
+	.card {
+		width: 339px;
+	}
 	.card__img {
 		height: 190px;
 	}
@@ -112,6 +115,9 @@
 }
 
 @media (max-width: 767px) {
+	.card {
+		width: 300px;
+	}
 	.card__img {
 		height: 168px;
 	}
@@ -125,6 +131,7 @@
 	.card__name {
 		font-size: 12px;
 		line-height: 1.25;
+		max-width: 240px;
 	}
 	
 	.card__duration {
